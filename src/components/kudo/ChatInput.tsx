@@ -1,0 +1,71 @@
+import { Send } from "lucide-react";
+
+export default function ChatInput() {
+    return (
+        <div
+            className="
+            fixed
+            bottom-20
+            left-0
+            right-0
+            z-50
+            flex
+            justify-center
+            "
+        >
+            <div
+                className="
+                w-full
+                max-w-sm
+                px-5
+                "
+            >
+                <div
+                    className="
+                    flex
+                    items-center
+                    rounded-full
+                    border
+                    border-[#D8D0C3]
+                    bg-[#F7F3EC]
+                    px-2
+                    py-2
+                    shadow-sm
+                    "
+                >
+                    <input
+                        type="text"
+                        placeholder="Message Kudo..."
+                        className="
+                        flex-1
+                        bg-transparent
+                        px-3
+                        text-sm
+                        text-[#111827]
+                        placeholder:text-[#9CA3AF]
+                        outline-none
+                        "
+                    />
+
+                    <button
+                        className="
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#0E5A64]
+                        shrink-0
+                        "
+                    >
+                        <Send
+                            size={16}
+                            color="white"
+                        />
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
