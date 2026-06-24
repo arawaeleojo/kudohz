@@ -1,5 +1,9 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import {
-    Settings,
+    Bell,
     Search,
     SlidersHorizontal,
     Plus,
@@ -13,14 +17,22 @@ interface PageHeaderProps {
 export default function PageHeader({
     title,
 }: PageHeaderProps) {
+    const router = useRouter();
+
     const renderActions = () => {
         switch (title.toLowerCase()) {
             case "profile":
                 return (
-                    <Settings
-                        size={22}
-                        color="#111827"
-                    />
+                    <button
+                        onClick={() =>
+                            router.push("/notifications")
+                        }
+                    >
+                        <Bell
+                            size={22}
+                            color="#111827"
+                        />
+                    </button>
                 );
 
             case "memories":

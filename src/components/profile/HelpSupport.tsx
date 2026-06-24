@@ -1,62 +1,42 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-
 import {
-    Palette,
-    Shield,
     CircleHelp,
-    Info,
-    LogOut,
+    Mail,
+    Bug,
     ChevronRight,
 } from "lucide-react";
 
-const settings = [
+const supportItems = [
     {
-        title: "Security",
-        icon: Shield,
-        href: "/profile/security",
-    },
-    {
-        title: "Appearance",
-        icon: Palette,
-        href: "/profile/appearance",
-    },
-    {
-        title: "Help & Support",
+        title: "Frequently Asked Questions",
         icon: CircleHelp,
-        href: "/profile/help-support",
     },
     {
-        title: "About Kudohz",
-        icon: Info,
-        href: "/profile/about",
+        title: "Contact Support",
+        icon: Mail,
+    },
+    {
+        title: "Report a Bug",
+        icon: Bug,
     },
 ];
 
-export default function ProfileSettings() {
-    const router = useRouter();
-
+export default function HelpSupport() {
     return (
-        <>
+        <div className="space-y-6">
             <div
                 className="
-                mt-6
                 rounded-3xl
                 border
                 border-[#E8E1D7]
                 overflow-hidden
                 "
             >
-                {settings.map((item) => {
+                {supportItems.map((item) => {
                     const Icon = item.icon;
 
                     return (
                         <button
                             key={item.title}
-                            onClick={() =>
-                                router.push(item.href)
-                            }
                             className="
                             w-full
                             flex
@@ -83,8 +63,8 @@ export default function ProfileSettings() {
 
                                 <span
                                     className="
-                                    text-[#111827]
                                     text-sm
+                                    text-[#111827]
                                     "
                                 >
                                     {item.title}
@@ -102,34 +82,46 @@ export default function ProfileSettings() {
 
             <div
                 className="
-                mt-6
                 rounded-3xl
                 border
-                border-[#FDE2E2]
-                overflow-hidden
+                border-[#E8E1D7]
+                p-5
                 "
             >
-                <button
+                <h3
                     className="
-                    w-full
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    px-5
-                    py-4
-                    text-[#DC2626]
-                    font-medium
+                    text-base
+                    font-semibold
+                    text-[#111827]
                     "
-                    onClick={() =>
-                        router.push("/home")
-                    }
                 >
-                    <LogOut size={18} />
+                    Need help?
+                </h3>
 
-                    Log Out
-                </button>
+                <p
+                    className="
+                    mt-3
+                    text-sm
+                    leading-6
+                    text-[#6B7280]
+                    "
+                >
+                    If you have questions, feedback, or
+                    encounter any issues while using
+                    Kudohz, we're here to help.
+                </p>
+
+                <p
+                    className="
+                    mt-4
+                    text-sm
+                    font-medium
+                    text-[#0E5A64]
+                    "
+                >
+                    support@kudohz.com
+                </p>
             </div>
-        </>
+        </div>
     );
 }

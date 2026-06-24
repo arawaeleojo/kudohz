@@ -59,7 +59,7 @@ export default function GreetingHeader() {
                 className="
                 mt-1
                 "
-            >
+            > 
                 <Bell
                     size={22}
                     color="#111827"
