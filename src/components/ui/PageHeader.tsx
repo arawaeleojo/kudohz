@@ -52,10 +52,16 @@ export default function PageHeader({
 
             case "journeys":
                 return (
+                    <button
+                        onClick={() =>
+                            router.push("/journeys/new")
+                        }
+                    >
                     <Plus
                         size={22}
                         color="#111827"
-                    />
+                        />
+                    </button>
                 );
 
             case "kudo":

@@ -13,37 +13,58 @@ export default function SettingsHeader({
     const router = useRouter();
 
     return (
-        <div
-            className="
-            flex
-            items-center
-            gap-3
-            mb-8
-            "
-        >
-            <button
-                onClick={() => router.back()}
+        <>
+            <div
                 className="
-                flex
-                items-center
-                justify-center
+                fixed
+                top-0
+                left-1/2
+                -translate-x-1/2
+                w-full
+                max-w-sm
+                bg-[#F7F3EC]
+                px-5
+                pt-6
+                pb-4
+                z-40
                 "
             >
-                <ChevronLeft
-                    size={24}
-                    color="#111827"
-                />
-            </button>
+                <div
+                    className="
+                    flex
+                    items-center
+                    gap-3
+                    "
+                >
+                    <button
+                        onClick={() =>
+                            router.back()
+                        }
+                        className="
+                        flex
+                        items-center
+                        justify-center
+                        "
+                    >
+                        <ChevronLeft
+                            size={24}
+                            color="#111827"
+                        />
+                    </button>
 
-            <h1
-                className="
-                text-xl
-                font-bold
-                text-[#111827]
-                "
-            >
-                {title}
-            </h1>
-        </div>
+                    <h1
+                        className="
+                        text-xl
+                        font-bold
+                        text-[#111827]
+                        "
+                    >
+                        {title}
+                    </h1>
+                </div>
+            </div>
+
+            <div className="h-[72px]" />
+        </>
     );
 }
