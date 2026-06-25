@@ -1,6 +1,12 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import IdentityCard from "./IdentityCard";
 
 export default function IdentitiesSection() {
+    const router = useRouter();
+
     return (
         <section>
             <div
@@ -22,6 +28,11 @@ export default function IdentitiesSection() {
                 </h2>
 
                 <button
+                    onClick={() =>
+                        router.push(
+                            "/journeys"
+                        )
+                    }
                     className="
                     text-sm
                     font-medium

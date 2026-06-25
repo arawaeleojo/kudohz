@@ -1,7 +1,10 @@
-import {
-    ChevronRight,
-    TreePine,
-} from "lucide-react";
+"use client";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { ChevronRight } from "lucide-react";
+
+import { identityIllustrations } from "@/constants/identityIllustrations";
 
 interface IdentityCardProps {
     title: string;
@@ -14,6 +17,8 @@ export default function IdentityCard({
     description,
     status,
 }: IdentityCardProps) {
+    const router = useRouter();
+
     const statusStyles = {
         Growing:
             "bg-[#EEF5F0] text-[#2F7A59]",
@@ -26,14 +31,21 @@ export default function IdentityCard({
     };
 
     return (
-        <div
+        <button
+            onClick={() =>
+                router.push("/journeys/1")
+            }
             className="
+            w-full
+            text-left
             rounded-3xl
             bg-[#F7F3EC]
             border
             border-[#E8E1D7]
             shadow-[0_4px_16px_rgba(0,0,0,0.06)]
             p-4
+            transition-transform
+            active:scale-[0.98]
             "
         >
             <div
@@ -45,16 +57,23 @@ export default function IdentityCard({
             >
                 <div
                     className="
+                    shrink-0
                     flex
                     items-center
                     justify-center
-                    shrink-0
                     "
                 >
-                    <TreePine
-                        size={80}
-                        strokeWidth={1.5}
-                        color="#2F5A41"
+                    <Image
+                        src={
+                            identityIllustrations[
+                            title as keyof typeof identityIllustrations
+                            ]
+                        }
+                        alt={title}
+                        width={72}
+                        height={72}
+                        className="object-contain"
+                        unoptimized
                     />
                 </div>
 
@@ -128,6 +147,6 @@ export default function IdentityCard({
                     color="#6B7280"
                 />
             </div>
-        </div>
+        </button>
     );
 }

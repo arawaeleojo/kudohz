@@ -22,10 +22,19 @@ export default function PageHeader({
         switch (title.toLowerCase()) {
             case "profile":
                 return (
-                    <Bell
-                        size={22}
-                        color="#111827"
-                    />
+                    <button
+                        onClick={() =>
+                            router.push(
+                                "/notifications"
+                            )
+                        }
+                        className="mt-1"
+                    >
+                        <Bell
+                            size={22}
+                            color="#111827"
+                        />
+                    </button>
                 );
 
             case "memories":

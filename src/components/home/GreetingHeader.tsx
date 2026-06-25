@@ -1,6 +1,11 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Bell, Leaf } from "lucide-react";
 
 export default function GreetingHeader() {
+    const router = useRouter();
+
     return (
         <div
             className="
@@ -56,10 +61,13 @@ export default function GreetingHeader() {
             </div>
 
             <button
-                className="
-                mt-1
-                "
-            > 
+                onClick={() =>
+                    router.push(
+                        "/notifications"
+                    )
+                }
+                className="mt-1"
+            >
                 <Bell
                     size={22}
                     color="#111827"

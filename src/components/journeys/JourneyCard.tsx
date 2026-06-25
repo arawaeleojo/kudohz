@@ -1,5 +1,10 @@
-import { ChevronRight, TreePine } from "lucide-react";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+
+import { identityIllustrations } from "@/constants/identityIllustrations";
 
 interface JourneyCardProps {
     title: string;
@@ -26,22 +31,33 @@ export default function JourneyCard({
             gap-5
             rounded-3xl
             bg-[#F7F3EC]
-            shadow-sm
+            border
+            border-[#E8E1D7]
+            shadow-[0_4px_16px_rgba(0,0,0,0.06)]
             p-5
+            transition-transform
+            active:scale-[0.98]
             "
         >
             <div
                 className="
+                shrink-0
                 flex
                 items-center
                 justify-center
-                shrink-0
                 "
             >
-                <TreePine
-                    size={90}
-                    strokeWidth={1.5}
-                    color="#2F5A41"
+                <Image
+                    src={
+                        identityIllustrations[
+                        title as keyof typeof identityIllustrations
+                        ]
+                    }
+                    alt={title}
+                    width={84}
+                    height={84}
+                    className="object-contain"
+                    unoptimized
                 />
             </div>
 
