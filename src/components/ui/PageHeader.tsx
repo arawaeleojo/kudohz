@@ -23,30 +23,53 @@ export default function PageHeader({
         switch (title.toLowerCase()) {
             case "profile":
                 return (
-                    <button
-                        onClick={() =>
-                            router.push("/notifications")
-                        }
-                    >
-                        <Bell
-                            size={22}
-                            color="#111827"
-                        />
-                    </button>
+                    <Bell
+                        size={22}
+                        color="#111827"
+                    />
                 );
 
             case "memories":
                 return (
                     <div className="flex items-center gap-4">
-                        <Search
-                            size={20}
-                            color="#111827"
-                        />
+                        <button
+                            onClick={() =>
+                                router.push(
+                                    "/memories/search"
+                                )
+                            }
+                        >
+                            <Search
+                                size={20}
+                                color="#111827"
+                            />
+                        </button>
 
-                        <SlidersHorizontal
-                            size={20}
-                            color="#111827"
-                        />
+                        <button
+                            onClick={() =>
+                                router.push(
+                                    "/memories/new"
+                                )
+                            }
+                        >
+                            <Plus
+                                size={20}
+                                color="#111827"
+                            />
+                        </button>
+
+                        {/* <button
+                            onClick={() =>
+                                router.push(
+                                    "/memories/filter"
+                                )
+                            }
+                        >
+                            <SlidersHorizontal
+                                size={20}
+                                color="#111827"
+                            /> */}
+                        {/* </button> */}
                     </div>
                 );
 
@@ -54,12 +77,14 @@ export default function PageHeader({
                 return (
                     <button
                         onClick={() =>
-                            router.push("/journeys/new")
+                            router.push(
+                                "/journeys/new"
+                            )
                         }
                     >
-                    <Plus
-                        size={22}
-                        color="#111827"
+                        <Plus
+                            size={22}
+                            color="#111827"
                         />
                     </button>
                 );
@@ -112,9 +137,7 @@ export default function PageHeader({
                         {title}
                     </h1>
 
-                    <div>
-                        {renderActions()}
-                    </div>
+                    {renderActions()}
                 </div>
             </div>
 

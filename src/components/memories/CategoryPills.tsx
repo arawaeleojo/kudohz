@@ -1,47 +1,55 @@
-export default function CategoryPills() {
+"use client";
+
+interface CategoryPillsProps {
+    journeys: string[];
+    selectedJourney: string;
+    onSelectJourney: (
+        journey: string
+    ) => void;
+}
+
+export default function CategoryPills({
+    journeys,
+    selectedJourney,
+    onSelectJourney,
+}: CategoryPillsProps) {
     const categories = [
         "All",
-        "Writer",
-        "Designer",
-        "Athlete",
+        ...journeys,
     ];
 
     return (
         <div
             className="
-      grid
-      grid-cols-4
-      gap-2
-      mb-8
-      w-full
-      "
+            flex
+            gap-2
+            overflow-x-auto
+            scrollbar-hide
+            mb-8
+            "
         >
-            {categories.map((category, index) => (
+            {categories.map((category) => (
                 <button
                     key={category}
-                    className={
-                        index === 0
-                            ? `
-                w-full
-                py-2.5
-                rounded-full
-                bg-[#0E5A64]
-                text-white
-                text-xs
-                font-medium
-              `
-                            : `
-                w-full
-                py-2.5
-                rounded-full
-                border
-                border-[#E2DBCF]
-                bg-[#EFE8DE]
-                text-[#374151]
-                text-xs
-                font-medium
-              `
+                    onClick={() =>
+                        onSelectJourney(
+                            category
+                        )
                     }
+                    className={`
+                        whitespace-nowrap
+                        px-5
+                        py-2.5
+                        rounded-full
+                        text-xs
+                        font-medium
+                        transition-colors
+                        ${selectedJourney ===
+                            category
+                            ? "bg-[#0E5A64] text-white"
+                            : "border border-[#E2DBCF] bg-[#EFE8DE] text-[#374151]"
+                        }
+                    `}
                 >
                     {category}
                 </button>

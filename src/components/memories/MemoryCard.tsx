@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 interface MemoryCardProps {
     image: string;
     title: string;
@@ -13,91 +17,93 @@ export default function MemoryCard({
     date,
     tag,
 }: MemoryCardProps) {
+    const router = useRouter();
+
     return (
-        <div
+        <button
+            onClick={() =>
+                router.push("/memories/1")
+            }
             className="
-      flex
-      gap-4
-      p-3
-      mb-4
-      rounded-2xl
-      border
-      border-[#D8D0C3]
-      "
+            w-full
+            text-left
+            flex
+            gap-4
+            p-3
+            mb-4
+            rounded-2xl
+            border
+            border-[#D8D0C3]
+            "
         >
             <img
                 src={image}
                 alt={title}
                 className="
-        w-24
-        self-stretch
-        rounded-xl
-        object-cover
-        shrink-0
-        "
+                w-24
+                self-stretch
+                rounded-xl
+                object-cover
+                shrink-0
+                "
             />
 
-            <div
-                className="
-        flex-1
-        min-w-0
-        "
-            >
+            <div className="flex-1 min-w-0">
                 <h3
                     className="
-          text-sm
-          font-medium
-          text-[#111827]
-          leading-5
-          mb-1
-          "
+                    text-sm
+                    font-medium
+                    text-[#111827]
+                    leading-5
+                    mb-1
+                    "
                 >
                     {title}
                 </h3>
 
                 <p
                     className="
-          text-xs
-          text-[#6B7280]
-          leading-5
-          mb-1
-          "
+                    text-xs
+                    text-[#6B7280]
+                    leading-5
+                    mb-2
+                    "
                 >
                     {preview}
                 </p>
 
                 <div
                     className="
-          flex
-          items-center
-          justify-between
-          "
+                    flex
+                    items-center
+                    justify-between
+                    "
                 >
                     <span
                         className="
-            text-xs
-            font-medium
-            text-[#0E5A64]
-            "
+                        text-xs
+                        font-medium
+                        text-[#0E5A64]
+                        "
                     >
                         {date}
                     </span>
 
                     <span
                         className="
-            px-2
-            py-1
-            rounded-full
-            bg-[#EEF5F0]
-            text-[#2F7A59]
-            text-[10px]
-            font-medium
-            "
+                        px-2
+                        py-1
+                        rounded-full
+                        bg-[#EEF5F0]
+                        text-[#2F7A59]
+                        text-[10px]
+                        font-medium
+                        "
                     >
                         {tag}
                     </span>
                 </div>
             </div>
-        </div>
+        </button>
     );
 }
