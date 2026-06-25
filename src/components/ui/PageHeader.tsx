@@ -1,15 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import KudoMenu from "@/components/kudo/KudoMenu";
 
 import {
     Bell,
     Search,
-    SlidersHorizontal,
     Plus,
-    History,
-    Ellipse,
-    MoreVertical,
 } from "lucide-react";
 
 interface PageHeaderProps {
@@ -59,19 +56,6 @@ export default function PageHeader({
                                 color="#111827"
                             />
                         </button>
-
-                        {/* <button
-                            onClick={() =>
-                                router.push(
-                                    "/memories/filter"
-                                )
-                            }
-                        >
-                            <SlidersHorizontal
-                                size={20}
-                                color="#111827"
-                            /> */}
-                        {/* </button> */}
                     </div>
                 );
 
@@ -92,13 +76,7 @@ export default function PageHeader({
                 );
 
             case "kudo":
-                return (
-                    <MoreVertical
-                        size={20}
-                        color="#111827"
-                        strokeWidth={2.2}
-                    />
-                );
+                return <KudoMenu />;
 
             default:
                 return null;
