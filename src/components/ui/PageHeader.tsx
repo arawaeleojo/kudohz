@@ -8,6 +8,8 @@ import {
     SlidersHorizontal,
     Plus,
     History,
+    Ellipse,
+    MoreVertical,
 } from "lucide-react";
 
 interface PageHeaderProps {
@@ -91,7 +93,7 @@ export default function PageHeader({
 
             case "kudo":
                 return (
-                    <History
+                    <MoreVertical
                         size={20}
                         color="#111827"
                         strokeWidth={2.2}

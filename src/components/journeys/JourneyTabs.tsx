@@ -1,8 +1,27 @@
-export default function JourneyTabs() {
+interface JourneyTabsProps {
+    selectedTab: string;
+    onChange: (
+        tab: string
+    ) => void;
+}
+
+export default function JourneyTabs({
+    selectedTab,
+    onChange,
+}: JourneyTabsProps) {
     const tabs = [
-        "Active",
-        "Completed",
-        "Archived",
+        {
+            label: "Active",
+            value: "active",
+        },
+        {
+            label: "Completed",
+            value: "completed",
+        },
+        {
+            label: "Archived",
+            value: "archived",
+        },
     ];
 
     return (
@@ -17,11 +36,15 @@ export default function JourneyTabs() {
             p-1
             "
         >
-            {tabs.map((tab, index) => (
+            {tabs.map((tab) => (
                 <button
-                    key={tab}
+                    key={tab.value}
+                    onClick={() =>
+                        onChange(tab.value)
+                    }
                     className={
-                        index === 0
+                        selectedTab ===
+                            tab.value
                             ? `
                             py-2.5
                             rounded-full
@@ -39,7 +62,7 @@ export default function JourneyTabs() {
                           `
                     }
                 >
-                    {tab}
+                    {tab.label}
                 </button>
             ))}
         </div>
