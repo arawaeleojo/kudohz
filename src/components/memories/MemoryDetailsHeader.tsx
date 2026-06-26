@@ -6,24 +6,35 @@ import {
     Pencil,
 } from "lucide-react";
 
+import IconButton from "@/components/ui/IconButton";
+
 export default function MemoryDetailsHeader() {
     const router = useRouter();
 
     return (
         <>
-            <div
+            <header
                 className="
                 fixed
                 top-0
                 left-1/2
                 -translate-x-1/2
+
+                z-40
+
                 w-full
                 max-w-sm
-                bg-[#F7F3EC]
+
+                border-b
+                border-[var(--border)]
+
+                bg-[var(--background)]
+
                 px-5
                 pt-6
                 pb-4
-                z-40
+
+                backdrop-blur-md
                 "
             >
                 <div
@@ -37,32 +48,31 @@ export default function MemoryDetailsHeader() {
                         className="
                         flex
                         items-center
-                        gap-3
+                        gap-2
                         "
                     >
-                        <button
+                        <IconButton
                             onClick={() =>
                                 router.back()
                             }
                         >
                             <ChevronLeft
-                                size={24}
-                                color="#111827"
+                                size={20}
                             />
-                        </button>
+                        </IconButton>
 
                         <h1
                             className="
                             text-xl
                             font-bold
-                            text-[#111827]
+                            text-[var(--foreground)]
                             "
                         >
                             Memory
                         </h1>
                     </div>
 
-                    <button
+                    <IconButton
                         onClick={() =>
                             router.push(
                                 "/memories/edit"
@@ -71,13 +81,12 @@ export default function MemoryDetailsHeader() {
                     >
                         <Pencil
                             size={18}
-                            color="#111827"
                         />
-                    </button>
+                    </IconButton>
                 </div>
-            </div>
+            </header>
 
-            <div className="h-[72px]" />
+            <div className="h-[84px]" />
         </>
     );
 }

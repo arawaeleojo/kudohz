@@ -11,6 +11,8 @@ import {
     ChevronRight,
 } from "lucide-react";
 
+import Card from "@/components/ui/Card";
+
 const settings = [
     {
         title: "Security",
@@ -39,16 +41,8 @@ export default function ProfileSettings() {
 
     return (
         <>
-            <div
-                className="
-                mt-6
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                overflow-hidden
-                "
-            >
-                {settings.map((item) => {
+            <Card className="mt-6 overflow-hidden p-0">
+                {settings.map((item, index) => {
                     const Icon = item.icon;
 
                     return (
@@ -57,34 +51,65 @@ export default function ProfileSettings() {
                             onClick={() =>
                                 router.push(item.href)
                             }
-                            className="
-                            w-full
-                            flex
-                            items-center
-                            justify-between
-                            px-5
-                            py-4
-                            border-b
-                            border-[#F3EEE7]
-                            last:border-b-0
-                            "
+                            className={`
+                                w-full
+
+                                flex
+                                items-center
+                                justify-between
+
+                                px-5
+                                py-4
+
+                                transition-all
+                                duration-200
+
+                                hover:bg-[var(--surface-secondary)]
+
+                                active:scale-[0.99]
+
+                                ${index !==
+                                    settings.length -
+                                    1
+                                    ? "border-b border-[var(--border)]"
+                                    : ""
+                                }
+                            `}
                         >
                             <div
                                 className="
                                 flex
                                 items-center
-                                gap-3
+                                gap-4
                                 "
                             >
-                                <Icon
-                                    size={18}
-                                    color="#0E5A64"
-                                />
+                                <div
+                                    className="
+                                    flex
+
+                                    h-10
+                                    w-10
+
+                                    items-center
+                                    justify-center
+
+                                    rounded-xl
+
+                                    bg-[var(--surface-secondary)]
+                                    "
+                                >
+                                    <Icon
+                                        size={18}
+                                        className="text-[var(--primary)]"
+                                    />
+                                </div>
 
                                 <span
                                     className="
-                                    text-[#111827]
                                     text-sm
+                                    font-medium
+
+                                    text-[var(--foreground)]
                                     "
                                 >
                                     {item.title}
@@ -93,43 +118,54 @@ export default function ProfileSettings() {
 
                             <ChevronRight
                                 size={18}
-                                color="#9CA3AF"
+                                className="text-[var(--foreground-secondary)]"
                             />
                         </button>
                     );
                 })}
-            </div>
+            </Card>
 
-            <div
+            <Card
                 className="
                 mt-6
-                rounded-3xl
-                border
-                border-[#FDE2E2]
+
                 overflow-hidden
+
+                border-[var(--danger)]
+
+                p-0
                 "
             >
                 <button
-                    className="
-                    w-full
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    px-5
-                    py-4
-                    text-[#DC2626]
-                    font-medium
-                    "
                     onClick={() =>
                         router.push("/home")
                     }
+                    className="
+                    flex
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+
+                    px-5
+                    py-4
+
+                    font-medium
+
+                    text-[var(--danger)]
+
+                    transition-colors
+
+                    hover:bg-red-500/5
+
+                    active:scale-[0.99]
+                    "
                 >
                     <LogOut size={18} />
 
                     Log Out
                 </button>
-            </div>
+            </Card>
         </>
     );
 }

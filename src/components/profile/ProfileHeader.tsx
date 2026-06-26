@@ -1,60 +1,69 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Pencil } from "lucide-react";
+
 import AvatarCircle from "./AvatarCircle";
+
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
 
 export default function ProfileHeader() {
     const router = useRouter();
 
     return (
-        <div
-            className="
-            flex
-            items-start
-            gap-4
-            "
-        >
-            <AvatarCircle />
+        <Card className="p-5">
+            <div
+                className="
+                flex
+                items-center
+                gap-4
+                "
+            >
+                <AvatarCircle size={84} />
 
-            <div>
-                <h2
-                    className="
-                    text-2xl
-                    font-bold
-                    text-[#111827]
-                    "
-                >
-                    Eleojo Arawa
-                </h2>
+                <div className="flex-1 min-w-0">
+                    <h2
+                        className="
+                        text-2xl
+                        font-bold
+                        text-[var(--foreground)]
+                        "
+                    >
+                        Eleojo Arawa
+                    </h2>
 
-                <p
-                    className="
-                    text-sm
-                    text-[#6B7280]
-                    mt-1
-                    "
-                >
-                    Keep becoming.
-                </p>
+                    <p
+                        className="
+                        mt-1
+                        text-sm
+                        text-[var(--foreground-secondary)]
+                        "
+                    >
+                        Keep becoming.
+                    </p>
 
-                <button
-                    onClick={() =>
-                        router.push("/profile/edit")
-                    }
-                    className="
-                    mt-3
-                    px-4
-                    py-2
-                    rounded-full
-                    bg-[#F1ECE3]
-                    text-sm
-                    font-medium
-                    text-[#111827]
-                    "
-                >
-                    Edit Profile
-                </button>
+                    <div className="mt-4">
+                        <Button
+                            variant="secondary"
+                            fullWidth={false}
+                            size="sm"
+                            leftIcon={
+                                <Pencil
+                                    size={16}
+                                />
+                            }
+                            onClick={() =>
+                                router.push(
+                                    "/profile/edit"
+                                )
+                            }
+                        >
+                            Edit Profile
+                        </Button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </Card>
     );
 }

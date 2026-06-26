@@ -2,6 +2,9 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
+
+import Button from "@/components/ui/Button";
 
 interface ActionConfirmationDialogProps {
     open: boolean;
@@ -35,124 +38,160 @@ export default function ActionConfirmationDialog({
         setMounted(true);
     }, []);
 
-    if (!mounted || !open) return null;
+    if (!mounted) return null;
 
     return createPortal(
-        <div
-            className="
-            fixed
-            inset-0
-            z-[100]
-            flex
-            items-center
-            justify-center
-            bg-black/40
-            px-8
-            py-10
-            "
-        >
-            <div
-                className="
-                w-full
-                max-w-[320px]
-                rounded-3xl
-                bg-[#F7F3EC]
-                px-6
-                py-7
-                shadow-2xl
-                "
-            >
-                {icon && (
-                    <div
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                    }}
+                    animate={{
+                        opacity: 1,
+                    }}
+                    exit={{
+                        opacity: 0,
+                    }}
+                    transition={{
+                        duration: 0.2,
+                    }}
+                    className="
+                    fixed
+                    inset-0
+                    z-[100]
+
+                    flex
+                    items-center
+                    justify-center
+
+                    bg-black/40
+
+                    px-8
+                    py-10
+                    "
+                    onClick={onCancel}
+                >
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            scale: 0.92,
+                            y: 16,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            y: 0,
+                        }}
+                        exit={{
+                            opacity: 0,
+                            scale: 0.92,
+                            y: 16,
+                        }}
+                        transition={{
+                            duration: 0.25,
+                        }}
+                        onClick={(e) =>
+                            e.stopPropagation()
+                        }
                         className="
-                        mb-6
-                        flex
-                        h-16
-                        w-16
-                        items-center
-                        justify-center
-                        rounded-2xl
-                        bg-[#EFE8DE]
-                        text-[#0E5A64]
+                        w-full
+                        max-w-[340px]
+
+                        rounded-3xl
+
+                        border
+                        border-[var(--border)]
+
+                        bg-[var(--surface)]
+
+                        p-6
+
+                        shadow-2xl
                         "
                     >
-                        {icon}
-                    </div>
-                )}
+                        {icon && (
+                            <div
+                                className="
+                                mb-5
 
-                <h2
-                    className="
-                    text-xl
-                    font-semibold
-                    text-[#111827]
-                    "
-                >
-                    {title}
-                </h2>
+                                flex
+                                h-16
+                                w-16
+                                items-center
+                                justify-center
 
-                <p
-                    className="
-                    mt-3
-                    text-sm
-                    leading-6
-                    text-[#6B7280]
-                    "
-                >
-                    {description}
-                </p>
+                                rounded-2xl
 
-                <div
-                    className={
-                        showCancel
-                            ? "mt-8 flex gap-3"
-                            : "mt-8"
-                    }
-                >
-                    {showCancel && (
-                        <button
-                            onClick={onCancel}
+                                bg-[var(--surface-secondary)]
+
+                                text-[var(--primary)]
+                                "
+                            >
+                                {icon}
+                            </div>
+                        )}
+
+                        <h2
                             className="
-                            flex-1
-                            rounded-2xl
-                            border
-                            border-[#D9D2C7]
-                            bg-white
-                            py-3
-                            text-sm
-                            font-medium
-                            text-[#374151]
-                            transition-colors
-                            hover:bg-[#F8F5EF]
+                            text-xl
+                            font-semibold
+                            text-[var(--foreground)]
                             "
                         >
-                            {cancelText}
-                        </button>
-                    )}
+                            {title}
+                        </h2>
 
-                    <button
-                        onClick={onConfirm}
-                        className={`
-                            ${showCancel
-                                ? "flex-1"
-                                : "w-full"
-                            }
-                            rounded-2xl
-                            py-3
+                        <p
+                            className="
+                            mt-3
+
                             text-sm
-                            font-medium
-                            text-white
-                            transition-colors
-                            ${destructive
-                                ? "bg-[#DC2626] hover:bg-[#B91C1C]"
-                                : "bg-[#0E5A64] hover:bg-[#0B4A52]"
-                            }
-                        `}
-                    >
-                        {confirmText}
-                    </button>
-                </div>
-            </div>
-        </div>,
+                            leading-6
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            {description}
+                        </p>
+
+                        <div
+                            className={`
+                                mt-8
+                                ${showCancel
+                                    ? "flex gap-3"
+                                    : ""
+                                }
+                            `}
+                        >
+                            {showCancel && (
+                                <Button
+                                    variant="secondary"
+                                    onClick={
+                                        onCancel
+                                    }
+                                >
+                                    {cancelText}
+                                </Button>
+                            )}
+
+                            <Button
+                                variant={
+                                    destructive
+                                        ? "danger"
+                                        : "primary"
+                                }
+                                onClick={
+                                    onConfirm
+                                }
+                            >
+                                {confirmText}
+                            </Button>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>,
         document.body
     );
 }

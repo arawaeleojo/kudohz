@@ -21,8 +21,11 @@ export default function IdentitiesSection() {
                     className="
                     text-lg
                     font-semibold
-                    text-[#111827]
                     "
+                    style={{
+                        color:
+                            "var(--foreground)",
+                    }}
                 >
                     My Identities
                 </h2>
@@ -36,8 +39,13 @@ export default function IdentitiesSection() {
                     className="
                     text-sm
                     font-medium
-                    text-[#0E5A64]
+                    transition-colors
+                    hover:opacity-80
                     "
+                    style={{
+                        color:
+                            "var(--primary)",
+                    }}
                 >
                     View all
                 </button>

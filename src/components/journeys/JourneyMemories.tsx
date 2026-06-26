@@ -1,6 +1,13 @@
-import { ChevronRight } from "lucide-react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { BookOpen } from "lucide-react";
+
+import CardSection from "@/components/ui/CardSection";
 
 export default function JourneyMemories() {
+    const router = useRouter();
+
     const memories = [
         "Published first article",
         "Finished chapter draft",
@@ -8,51 +15,39 @@ export default function JourneyMemories() {
     ];
 
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#E8E1D7]
-            p-5
-            "
+        <CardSection
+            title="Recent Memories"
+            actionText="View"
+            onAction={() =>
+                router.push("/memories")
+            }
         >
-            <div
-                className="
-                flex
-                items-center
-                justify-between
-                mb-4
-                "
-            >
-                <h2
-                    className="
-                    text-base
-                    font-semibold
-                    text-[#111827]
-                    "
-                >
-                    Recent Memories
-                </h2>
-
-                <ChevronRight
-                    size={18}
-                    color="#6B7280"
-                />
-            </div>
-
             <div className="space-y-3">
                 {memories.map((memory) => (
                     <div
                         key={memory}
                         className="
-                        text-sm
-                        text-[#374151]
+                        flex
+                        items-center
+                        gap-3
                         "
                     >
-                        • {memory}
+                        <BookOpen
+                            size={15}
+                            className="text-[var(--primary)]"
+                        />
+
+                        <span
+                            className="
+                            text-sm
+                            text-[var(--foreground)]
+                            "
+                        >
+                            {memory}
+                        </span>
                     </div>
                 ))}
             </div>
-        </div>
+        </CardSection>
     );
 }

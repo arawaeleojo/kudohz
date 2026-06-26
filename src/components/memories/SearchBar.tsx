@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface SearchBarProps {
     value: string;
@@ -14,22 +15,41 @@ export default function SearchBar({
     onChange,
 }: SearchBarProps) {
     return (
-        <div
+        <motion.div
+            initial={{
+                opacity: 0,
+                y: 8,
+            }}
+            animate={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                duration: 0.25,
+            }}
             className="
             flex
             items-center
             gap-3
+
             rounded-2xl
+
             border
-            border-[#E8E1D7]
-            bg-[#F7F3EC]
+            border-[var(--border)]
+
+            bg-[var(--surface)]
+
             px-4
             py-3
+
+            transition-colors
+
+            focus-within:border-[var(--primary)]
             "
         >
             <Search
                 size={18}
-                color="#6B7280"
+                className="text-[var(--foreground-secondary)]"
             />
 
             <input
@@ -42,9 +62,16 @@ export default function SearchBar({
                 placeholder="Search memories..."
                 className="
                 flex-1
+
                 bg-transparent
-                outline-none
+
                 text-sm
+
+                text-[var(--foreground)]
+
+                placeholder:text-[var(--foreground-secondary)]
+
+                outline-none
                 "
             />
 
@@ -53,13 +80,18 @@ export default function SearchBar({
                     onClick={() =>
                         onChange("")
                     }
+                    className="
+                    transition-opacity
+
+                    hover:opacity-70
+                    "
                 >
                     <X
                         size={18}
-                        color="#6B7280"
+                        className="text-[var(--foreground-secondary)]"
                     />
                 </button>
             )}
-        </div>
+        </motion.div>
     );
 }

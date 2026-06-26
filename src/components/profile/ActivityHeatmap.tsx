@@ -1,5 +1,7 @@
 import { Leaf } from "lucide-react";
 
+import Card from "@/components/ui/Card";
+
 export default function ActivityHeatmap() {
     const days = [
         "Mon",
@@ -20,39 +22,31 @@ export default function ActivityHeatmap() {
     ];
 
     const colors = [
-        "#D5D1CB", // none
-        "#AFCFC0", // low
-        "#6FA28B", // medium
-        "#2F7A59", // high
-        "#0E5A64", // highest
+        "var(--border)",
+        "#AFCFC0",
+        "#6FA28B",
+        "#2F7A59",
+        "var(--primary)",
     ];
 
     return (
-        <div
-            className="
-      mt-6
-      rounded-3xl
-      border
-      border-[#E8E1D7]
-      p-5
-      "
-        >
+        <Card className="mt-6 p-5">
             {/* Header */}
-            <div className="flex items-center justify-between mb-5">
+            <div className="mb-5 flex items-center justify-between">
                 <h3
                     className="
-          font-semibold
-          text-[#111827]
-          "
+                    font-semibold
+                    text-[var(--foreground)]
+                    "
                 >
                     Activity Overview
                 </h3>
 
                 <span
                     className="
-          text-xs
-          text-[#6B7280]
-          "
+                    text-xs
+                    text-[var(--foreground-secondary)]
+                    "
                 >
                     June 2026
                 </span>
@@ -61,21 +55,21 @@ export default function ActivityHeatmap() {
             {/* Days */}
             <div
                 className="
-        grid
-        grid-cols-7
-        gap-2
-        mb-3
-        "
+                mb-3
+                grid
+                grid-cols-7
+                gap-2
+                "
             >
                 {days.map((day) => (
                     <div
                         key={day}
                         className="
-            text-center
-            text-[10px]
-            text-[#6B7280]
-            font-medium
-            "
+                        text-center
+                        text-[10px]
+                        font-medium
+                        text-[var(--foreground-secondary)]
+                        "
                     >
                         {day}
                     </div>
@@ -84,62 +78,85 @@ export default function ActivityHeatmap() {
 
             {/* Heatmap */}
             <div className="space-y-3">
-                {activityLevels.map((week, weekIndex) => (
-                    <div
-                        key={weekIndex}
-                        className="
-            grid
-            grid-cols-7
-            gap-2
-            "
-                    >
-                        {week.map((level, index) => (
-                            <div
-                                key={index}
-                                className="
-                flex
-                items-center
-                justify-center
-                "
-                            >
-                                <Leaf
-                                    size={22}
-                                    strokeWidth={3}
-                                    color={colors[level]}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                ))}
+                {activityLevels.map(
+                    (week, weekIndex) => (
+                        <div
+                            key={weekIndex}
+                            className="
+                            grid
+                            grid-cols-7
+                            gap-2
+                            "
+                        >
+                            {week.map(
+                                (
+                                    level,
+                                    index
+                                ) => (
+                                    <div
+                                        key={
+                                            index
+                                        }
+                                        className="
+                                        flex
+                                        items-center
+                                        justify-center
+                                        "
+                                    >
+                                        <Leaf
+                                            size={22}
+                                            strokeWidth={
+                                                3
+                                            }
+                                            color={
+                                                colors[
+                                                level
+                                                ]
+                                            }
+                                        />
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    )
+                )}
             </div>
 
             {/* Legend */}
             <div
                 className="
-        mt-6
-        flex
-        items-center
-        justify-end
-        gap-2
-        text-[10px]
-        text-[#6B7280]
-        "
+                mt-6
+                flex
+                items-center
+                justify-end
+                gap-2
+                text-[10px]
+                text-[var(--foreground-secondary)]
+                "
             >
                 <span>Less</span>
 
                 <div className="flex gap-1">
-                    {colors.map((color) => (
-                        <Leaf
-                            key={color}
-                            size={14}
-                            strokeWidth={3}
-                            color={color}
-                        />
-                    ))}
+                    {colors.map(
+                        (color) => (
+                            <Leaf
+                                key={
+                                    color
+                                }
+                                size={14}
+                                strokeWidth={
+                                    3
+                                }
+                                color={
+                                    color
+                                }
+                            />
+                        )
+                    )}
                 </div>
 
                 <span>More</span>
             </div>
-        </div>
+        </Card>
     );
 }

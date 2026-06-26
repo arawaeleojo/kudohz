@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CalendarDays } from "lucide-react";
 
 import CategoryPills from "./CategoryPills";
 import MemoryCard from "./MemoryCard";
@@ -23,7 +24,8 @@ const memories = [
     },
     {
         image: "https://picsum.photos/200?2",
-        title: "Published My First Article",
+        title:
+            "Published My First Article",
         preview:
             "Shared my thoughts online for the first time.",
         date: "2026-06-18",
@@ -31,7 +33,8 @@ const memories = [
     },
     {
         image: "https://picsum.photos/200?7",
-        title: "Completed Character Profiles",
+        title:
+            "Completed Character Profiles",
         preview:
             "Created detailed backstories for the main cast.",
         date: "2026-05-12",
@@ -41,7 +44,8 @@ const memories = [
     // Designer
     {
         image: "https://picsum.photos/200?3",
-        title: "Completed Landing Page",
+        title:
+            "Completed Landing Page",
         preview:
             "Wrapped up the homepage redesign for Kudohz.",
         date: "2026-07-16",
@@ -49,7 +53,8 @@ const memories = [
     },
     {
         image: "https://picsum.photos/200?4",
-        title: "Created New Logo Concepts",
+        title:
+            "Created New Logo Concepts",
         preview:
             "Explored three directions for a client's branding.",
         date: "2026-06-10",
@@ -83,7 +88,8 @@ const memories = [
     },
     {
         image: "https://picsum.photos/200?9",
-        title: "Completed My Fastest 5 km",
+        title:
+            "Completed My Fastest 5 km",
         preview:
             "Improved my pace after weeks of consistent training.",
         date: "2026-05-01",
@@ -168,7 +174,7 @@ export default function MemoryList() {
                         className="
                         text-lg
                         font-semibold
-                        text-[#111827]
+                        text-[var(--foreground)]
                         "
                     >
                         No memories yet
@@ -179,7 +185,7 @@ export default function MemoryList() {
                         mt-2
                         text-sm
                         leading-6
-                        text-[#6B7280]
+                        text-[var(--foreground-secondary)]
                         "
                     >
                         {selectedJourney ===
@@ -189,7 +195,7 @@ export default function MemoryList() {
                     </p>
                 </div>
             ) : (
-                <div className="space-y-8">
+                <div className="space-y-10">
                     {Object.entries(
                         groupedMemories
                     ).map(
@@ -200,28 +206,56 @@ export default function MemoryList() {
                             <div
                                 key={month}
                             >
-                                <div className="mb-5">
+                                <div
+                                    className="
+                                    top-[84px]
+                                    z-10
+
+                                    mb-5
+
+                                    bg-[var(--background)]
+
+                                    py-2
+                                    "
+                                >
                                     <div
                                         className="
                                         flex
-                                        items-end
+                                        items-center
                                         justify-between
                                         "
                                     >
-                                        <h2
+                                        <div
                                             className="
-                                            text-xl
-                                            font-bold
-                                            text-[#111827]
+                                            flex
+                                            items-center
+                                            gap-2
                                             "
                                         >
-                                            {month}
-                                        </h2>
+                                            <CalendarDays
+                                                size={
+                                                    18
+                                                }
+                                                className="text-[var(--primary)]"
+                                            />
+
+                                            <h2
+                                                className="
+                                                text-xl
+                                                font-bold
+                                                text-[var(--foreground)]
+                                                "
+                                            >
+                                                {
+                                                    month
+                                                }
+                                            </h2>
+                                        </div>
 
                                         <span
                                             className="
                                             text-sm
-                                            text-[#6B7280]
+                                            text-[var(--foreground-secondary)]
                                             "
                                         >
                                             {
@@ -238,7 +272,7 @@ export default function MemoryList() {
                                         className="
                                         mt-3
                                         h-px
-                                        bg-[#E5DDD2]
+                                        bg-[var(--border)]
                                         "
                                     />
                                 </div>

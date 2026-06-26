@@ -45,22 +45,35 @@ export default function BottomNavigation() {
     return (
         <nav
             className="
-      fixed
-      bottom-0
-      left-0
-      right-0
-      mx-auto
-      max-w-sm
-      h-20
-      bg-[#F7F3EC]
-      flex
-      items-center
-      justify-around
-      px-2
-      "
+                fixed
+                bottom-0
+                left-0
+                right-0
+                mx-auto
+                max-w-sm
+                h-20
+
+                bg-[var(--surface)]
+
+                border-t
+                // border-[var(--border)]
+
+                flex
+                items-center
+                justify-around
+
+                px-2
+
+                transition-colors
+                duration-300
+
+                z-50
+                "
         >
             {navItems.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive =
+                    pathname === item.href;
+
                 const Icon = item.icon;
 
                 return (
@@ -68,31 +81,40 @@ export default function BottomNavigation() {
                         key={item.href}
                         href={item.href}
                         className="
-            flex
-            flex-col
-            items-center
-            justify-center
-            gap-1
-            "
+                        flex
+                        flex-col
+                        items-center
+                        justify-center
+                        gap-1
+                        transition-colors
+                        "
                     >
                         <Icon
-                            size={item.isKudo ? 24 : 20}
-                            strokeWidth={isActive ? 2.5 : 2}
-                            color={
+                            size={
+                                item.isKudo
+                                    ? 24
+                                    : 20
+                            }
+                            strokeWidth={
                                 isActive
-                                    ? "#0E5A64"
-                                    : "#6B7280"
+                                    ? 2.5
+                                    : 2
+                            }
+                            className={
+                                isActive
+                                    ? "text-primary"
+                                    : "text-foreground-secondary"
                             }
                         />
 
                         <span
                             className={`
-              text-[10px]
-              ${isActive
-                                    ? "text-[#0E5A64] font-medium"
-                                    : "text-[#6B7280]"
+                            text-[10px]
+                            ${isActive
+                                    ? "text-primary font-medium"
+                                    : "text-foreground-secondary"
                                 }
-              `}
+                            `}
                         >
                             {item.label}
                         </span>

@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { TreePine } from "lucide-react";
+import Image from "next/image";
+
+import { identityIllustrations } from "@/constants/identityIllustrations";
 
 const timelines = [
     "30 Days",
@@ -16,86 +18,75 @@ export default function JourneyTimelineSelector() {
         useState("90 Days");
 
     return (
-        <div>
-            <label
-                className="
-                block
-                mb-3
-                text-sm
-                font-medium
-                text-[#111827]
-                "
-            >
-                Timeline
-            </label>
+        <div
+            className="
+            grid
+            grid-cols-2
+            gap-3
+            "
+        >
+            {timelines.map((timeline) => (
+                <button
+                    key={timeline}
+                    type="button"
+                    onClick={() =>
+                        setSelected(
+                            timeline
+                        )
+                    }
+                    className={`
+                        rounded-2xl
+                        border
+                        p-4
+                        transition-all
+                        duration-200
+                        active:scale-[0.98]
 
-            <div
-                className="
-                grid
-                grid-cols-2
-                gap-3
-                "
-            >
-                {timelines.map((timeline) => (
-                    <button
-                        key={timeline}
-                        type="button"
-                        onClick={() =>
-                            setSelected(
-                                timeline
-                            )
-                        }
-                        className={`
-                            rounded-2xl
-                            border
-                            p-4
-                            transition-all
-                            ${selected ===
-                                timeline
-                                ? `
-                                    border-[#0E5A64]
-                                    bg-[#0E5A64]
+                        ${selected ===
+                            timeline
+                            ? `
+                                    border-[var(--primary)]
+                                    bg-[var(--primary)]
                                     text-white
-                                    `
-                                : `
-                                    border-[#E8E1D7]
-                                    bg-[#F7F3EC]
-                                    text-[#374151]
-                                    `
-                            }
-                        `}
+                                    shadow-md
+                                `
+                            : `
+                                    border-[var(--border)]
+                                    bg-[var(--surface)]
+                                    text-[var(--foreground)]
+                                `
+                        }
+                    `}
+                >
+                    <div
+                        className="
+                        flex
+                        flex-col
+                        items-center
+                        gap-3
+                        "
                     >
-                        <div
+                        <Image
+                            src={
+                                identityIllustrations.Writer
+                            }
+                            alt={timeline}
+                            width={42}
+                            height={42}
+                            unoptimized
+                        />
+
+                        <span
                             className="
-                            flex
-                            flex-col
-                            items-center
-                            gap-2
+                            text-sm
+                            font-medium
                             "
                         >
-                            <TreePine
-                                size={28}
-                                color={
-                                    selected ===
-                                        timeline
-                                        ? "#FFFFFF"
-                                        : "#2F5A41"
-                                }
-                                strokeWidth={1.8}
-                            />
-
-                            <span
-                                className="
-                                text-sm
-                                font-medium
-                                "
-                            >
-                                {timeline}
-                            </span>
-                        </div>
-                    </button>
-                ))}
-            </div>
+                            {timeline}
+                        </span>
+                    </div>
+                </button>
+            ))}
         </div>
     );
 }

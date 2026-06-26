@@ -1,7 +1,13 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import {
+    AnimatePresence,
+    motion,
+} from "framer-motion";
+import {
+    useEffect,
+    useState,
+} from "react";
 
 interface NatureCelebrationProps {
     show: boolean;
@@ -13,10 +19,18 @@ interface Particle {
     left: number;
     size: number;
     drift: number;
-    rotate: number;
+    rotation: number;
     duration: number;
     delay: number;
+    opacity: number;
 }
+
+const symbols = [
+    "🍃",
+    "🌿",
+    "🌸",
+    "🌼",
+];
 
 export default function NatureCelebration({
     show,
@@ -28,35 +42,48 @@ export default function NatureCelebration({
         if (!show) return;
 
         setParticles(
-            Array.from({ length: 16 }).map(
-                (_, index) => ({
-                    id:
-                        index +
-                        Date.now(),
-                    symbol:
-                        Math.random() > 0.5
-                            ? "🍃"
-                            : "🌸",
-                    left:
-                        Math.random() * 100,
-                    size:
-                        24 +
-                        Math.random() * 12,
-                    drift:
-                        (Math.random() -
-                            0.5) *
-                        180,
-                    rotate:
+            Array.from({
+                length: 18,
+            }).map((_, index) => ({
+                id:
+                    Date.now() +
+                    index +
+                    Math.random(),
+
+                symbol:
+                    symbols[
+                    Math.floor(
                         Math.random() *
-                        720,
-                    duration:
-                        2.8 +
-                        Math.random(),
-                    delay:
-                        Math.random() *
-                        0.5,
-                })
-            )
+                        symbols.length
+                    )
+                    ],
+
+                left:
+                    Math.random() * 100,
+
+                size:
+                    22 +
+                    Math.random() * 16,
+
+                drift:
+                    (Math.random() - 0.5) *
+                    220,
+
+                rotation:
+                    360 +
+                    Math.random() * 720,
+
+                duration:
+                    2.8 +
+                    Math.random() * 1.8,
+
+                delay:
+                    Math.random() * 0.45,
+
+                opacity:
+                    0.8 +
+                    Math.random() * 0.2,
+            }))
         );
     }, [show]);
 
@@ -81,6 +108,7 @@ export default function NatureCelebration({
                                 className="
                                 absolute
                                 select-none
+                                will-change-transform
                                 "
                                 style={{
                                     left: `${particle.left}%`,
@@ -88,27 +116,32 @@ export default function NatureCelebration({
                                         particle.size,
                                 }}
                                 initial={{
-                                    y: "-10vh",
-                                    opacity: 0,
-                                    rotate: 0,
+                                    y: "-15vh",
                                     x: 0,
+                                    rotate: 0,
+                                    opacity: 0,
                                 }}
                                 animate={{
-                                    y: "110vh",
-                                    opacity: [
-                                        0,
-                                        1,
-                                        1,
-                                        0,
-                                    ],
+                                    y: "115vh",
+
                                     x: [
                                         0,
-                                        particle.drift /
-                                        2,
+                                        particle.drift *
+                                        0.3,
+                                        particle.drift *
+                                        0.7,
                                         particle.drift,
                                     ],
+
                                     rotate:
-                                        particle.rotate,
+                                        particle.rotation,
+
+                                    opacity: [
+                                        0,
+                                        particle.opacity,
+                                        particle.opacity,
+                                        0,
+                                    ],
                                 }}
                                 exit={{
                                     opacity: 0,
@@ -116,9 +149,12 @@ export default function NatureCelebration({
                                 transition={{
                                     duration:
                                         particle.duration,
+
                                     delay:
                                         particle.delay,
-                                    ease: "easeInOut",
+
+                                    ease:
+                                        "easeInOut",
                                 }}
                             >
                                 {

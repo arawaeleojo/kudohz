@@ -1,6 +1,11 @@
 "use client";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { CalendarDays } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+import Card from "@/components/ui/Card";
 
 interface MemoryCardProps {
     image: string;
@@ -20,90 +25,148 @@ export default function MemoryCard({
     const router = useRouter();
 
     return (
-        <button
+        <motion.button
+            whileHover={{
+                y: -2,
+            }}
+            whileTap={{
+                scale: 0.98,
+            }}
+            transition={{
+                duration: 0.2,
+            }}
             onClick={() =>
                 router.push("/memories/1")
             }
             className="
+            group
+            mb-4
             w-full
             text-left
-            flex
-            gap-4
-            p-3
-            mb-4
-            rounded-2xl
-            border
-            border-[#D8D0C3]
             "
         >
-            <img
-                src={image}
-                alt={title}
+            <Card
                 className="
-                w-24
-                self-stretch
-                rounded-xl
-                object-cover
-                shrink-0
+                flex
+                gap-4
+                overflow-hidden
+                p-3
                 "
-            />
-
-            <div className="flex-1 min-w-0">
-                <h3
+            >
+                <div
                     className="
-                    text-sm
-                    font-medium
-                    text-[#111827]
-                    leading-5
-                    mb-1
+                    relative
+
+                    h-28
+                    w-24
+
+                    overflow-hidden
+
+                    rounded-xl
+
+                    shrink-0
                     "
                 >
-                    {title}
-                </h3>
+                    <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        unoptimized
+                        className="
+                        object-cover
 
-                <p
-                    className="
-                    text-xs
-                    text-[#6B7280]
-                    leading-5
-                    mb-2
-                    "
-                >
-                    {preview}
-                </p>
+                        transition-transform
+                        duration-500
+
+                        group-hover:scale-105
+                        "
+                    />
+                </div>
 
                 <div
                     className="
                     flex
-                    items-center
-                    justify-between
+                    min-w-0
+                    flex-1
+                    flex-col
                     "
                 >
-                    <span
+                    <h3
                         className="
-                        text-xs
-                        font-medium
-                        text-[#0E5A64]
-                        "
-                    >
-                        {date}
-                    </span>
+                        text-sm
+                        font-semibold
+                        leading-5
 
-                    <span
-                        className="
-                        px-2
-                        py-1
-                        rounded-full
-                        bg-[#EEF5F0]
-                        text-[#2F7A59]
-                        text-[10px]
-                        font-medium
+                        text-[var(--foreground)]
                         "
                     >
-                        {tag}
-                    </span>
+                        {title}
+                    </h3>
+
+                    <p
+                        className="
+                        mt-2
+
+                        flex-1
+
+                        text-xs
+                        leading-5
+
+                        text-[var(--foreground-secondary)]
+                        "
+                    >
+                        {preview}
+                    </p>
+
+                    <div
+                        className="
+                        mt-4
+
+                        flex
+                        items-center
+                        justify-between
+                        "
+                    >
+                        <div
+                            className="
+                            flex
+                            items-center
+                            gap-1.5
+
+                            text-xs
+
+                            text-[var(--primary)]
+                            "
+                        >
+                            <CalendarDays
+                                size={13}
+                            />
+
+                            <span>
+                                {date}
+                            </span>
+                        </div>
+
+                        <span
+                            className="
+                            rounded-full
+
+                            bg-[var(--surface-secondary)]
+
+                            px-3
+                            py-1
+
+                            text-[10px]
+                            font-semibold
+
+                            text-[var(--success)]
+                            "
+                        >
+                            {tag}
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </button>
+            </Card>
+        </motion.button>
     );
 }

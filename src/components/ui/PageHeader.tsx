@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import KudoMenu from "@/components/kudo/KudoMenu";
+import IconButton from "@/components/ui/IconButton";
 
 import {
     Bell,
@@ -22,25 +23,18 @@ export default function PageHeader({
         switch (title.toLowerCase()) {
             case "profile":
                 return (
-                    <button
-                        onClick={() =>
-                            router.push(
-                                "/notifications"
-                            )
-                        }
-                        className="mt-1"
-                    >
+                    <IconButton>
                         <Bell
                             size={22}
-                            color="#111827"
+                            className="text-[var(--foreground)]"
                         />
-                    </button>
+                    </IconButton>
                 );
 
             case "memories":
                 return (
-                    <div className="flex items-center gap-4">
-                        <button
+                    <div className="flex items-center gap-2">
+                        <IconButton
                             onClick={() =>
                                 router.push(
                                     "/memories/search"
@@ -49,11 +43,11 @@ export default function PageHeader({
                         >
                             <Search
                                 size={20}
-                                color="#111827"
+                                className="text-[var(--foreground)]"
                             />
-                        </button>
+                        </IconButton>
 
-                        <button
+                        <IconButton
                             onClick={() =>
                                 router.push(
                                     "/memories/new"
@@ -62,15 +56,15 @@ export default function PageHeader({
                         >
                             <Plus
                                 size={20}
-                                color="#111827"
+                                className="text-[var(--foreground)]"
                             />
-                        </button>
+                        </IconButton>
                     </div>
                 );
 
             case "journeys":
                 return (
-                    <button
+                    <IconButton
                         onClick={() =>
                             router.push(
                                 "/journeys/new"
@@ -79,9 +73,9 @@ export default function PageHeader({
                     >
                         <Plus
                             size={22}
-                            color="#111827"
+                            className="text-[var(--foreground)]"
                         />
-                    </button>
+                    </IconButton>
                 );
 
             case "kudo":
@@ -102,7 +96,9 @@ export default function PageHeader({
                 -translate-x-1/2
                 w-full
                 max-w-sm
-                bg-[#F7F3EC]
+                bg-[var(--background)]
+                transition-colors
+                duration-300
                 px-5
                 pt-6
                 pb-4
@@ -120,7 +116,7 @@ export default function PageHeader({
                         className="
                         text-xl
                         font-bold
-                        text-[#111827]
+                        text-[var(--foreground)]
                         "
                     >
                         {title}

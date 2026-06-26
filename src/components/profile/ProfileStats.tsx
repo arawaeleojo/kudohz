@@ -1,88 +1,66 @@
+import Card from "@/components/ui/Card";
+
+const stats = [
+    {
+        value: "3",
+        label: "Identities",
+    },
+    {
+        value: "28",
+        label: "Memories",
+    },
+    {
+        value: "47",
+        label: "Days Active",
+    },
+];
+
 export default function ProfileStats() {
     return (
         <div
             className="
-      mt-6
-      rounded-3xl
-      border
-      border-[#E8E1D7]
-      px-4
-      py-5
-      "
+            mt-6
+
+            grid
+            grid-cols-3
+
+            gap-3
+            "
         >
-            <div className="grid grid-cols-3">
-                <div className="text-center">
-                    <h3
-                        className="
-            text-3xl
-            font-bold
-            text-[#111827]
-            "
-                    >
-                        3
-                    </h3>
-
-                    <p
-                        className="
-            mt-1
-            text-xs
-            text-[#6B7280]
-            "
-                    >
-                        Identities
-                    </p>
-                </div>
-
-                <div
+            {stats.map((stat) => (
+                <Card
+                    key={stat.label}
                     className="
-          text-center
-          border-x
-          border-[#E8E1D7]
-          "
+                    p-4
+
+                    text-center
+                    "
                 >
                     <h3
                         className="
-            text-3xl
-            font-bold
-            text-[#111827]
-            "
+                        text-3xl
+                        font-bold
+
+                        text-[var(--foreground)]
+                        "
                     >
-                        28
+                        {stat.value}
                     </h3>
 
                     <p
                         className="
-            mt-1
-            text-xs
-            text-[#6B7280]
-            "
-                    >
-                        Memories
-                    </p>
-                </div>
+                        mt-2
 
-                <div className="text-center">
-                    <h3
-                        className="
-            text-3xl
-            font-bold
-            text-[#111827]
-            "
-                    >
-                        47
-                    </h3>
+                        text-xs
+                        font-medium
 
-                    <p
-                        className="
-            mt-1
-            text-xs
-            text-[#6B7280]
-            "
+                        text-[var(--foreground-secondary)]
+                        "
                     >
-                        Days Active
+                        {stat.label}
                     </p>
-                </div>
-            </div>
+                </Card>
+            ))}
         </div>
     );
 }

@@ -5,7 +5,10 @@ import {
     ChevronDown,
     ChevronUp,
     Bug,
+    Mail,
 } from "lucide-react";
+
+import Card from "@/components/ui/Card";
 
 const faqs = [
     {
@@ -34,9 +37,9 @@ const faqs = [
     },
     {
         question:
-            "How do memories and Kudo help me grow?",
+            "How do Memories and Kudo help me grow?",
         answer:
-            "Memories help you capture meaningful moments, lessons, and milestones along your journey. Kudo helps you reflect on those experiences, stay accountable, and keep moving forward when motivation fades.",
+            "Memories capture meaningful moments and lessons along your journey, while Kudo helps you reflect on those experiences and stay accountable to the person you're becoming.",
     },
 ];
 
@@ -46,43 +49,44 @@ export default function HelpSupport() {
 
     return (
         <div className="space-y-6">
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                overflow-hidden
-                "
-            >
+            <Card className="overflow-hidden p-0">
                 <div
                     className="
+                    border-b
+                    border-[var(--border)]
                     px-5
                     py-4
-                    border-b
-                    border-[#F3EEE7]
                     "
                 >
                     <h2
                         className="
                         text-base
                         font-semibold
-                        text-[#111827]
+                        text-[var(--foreground)]
                         "
                     >
                         Frequently Asked Questions
                     </h2>
+
+                    <p
+                        className="
+                        mt-1
+                        text-sm
+                        text-[var(--foreground-secondary)]
+                        "
+                    >
+                        Answers to common questions
+                        about Kudohz.
+                    </p>
                 </div>
 
                 {faqs.map((faq, index) => (
                     <div
                         key={faq.question}
-                        className="
-                        border-b
-                        border-[#F3EEE7]
-                        last:border-b-0
-                        "
+                        className="border-b last:border-b-0 border-[var(--border)]"
                     >
                         <button
+                            type="button"
                             onClick={() =>
                                 setOpenIndex(
                                     openIndex === index
@@ -98,14 +102,16 @@ export default function HelpSupport() {
                             px-5
                             py-4
                             text-left
+                            transition-colors
+                            hover:bg-[var(--surface-secondary)]
                             "
                         >
                             <span
                                 className="
+                                pr-4
                                 text-sm
                                 font-medium
-                                text-[#111827]
-                                pr-4
+                                text-[var(--foreground)]
                                 "
                             >
                                 {faq.question}
@@ -114,28 +120,23 @@ export default function HelpSupport() {
                             {openIndex === index ? (
                                 <ChevronUp
                                     size={18}
-                                    color="#6B7280"
+                                    className="text-[var(--foreground-secondary)]"
                                 />
                             ) : (
                                 <ChevronDown
                                     size={18}
-                                    color="#6B7280"
+                                    className="text-[var(--foreground-secondary)]"
                                 />
                             )}
                         </button>
 
                         {openIndex === index && (
-                            <div
-                                className="
-                                px-5
-                                pb-4
-                                "
-                            >
+                            <div className="px-5 pb-5">
                                 <p
                                     className="
                                     text-sm
                                     leading-7
-                                    text-[#6B7280]
+                                    text-[var(--foreground-secondary)]
                                     "
                                 >
                                     {faq.answer}
@@ -144,70 +145,102 @@ export default function HelpSupport() {
                         )}
                     </div>
                 ))}
-            </div>
+            </Card>
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                "
-            >
-                <h3
+            <Card className="p-5">
+                <div className="flex items-center gap-3">
+                    <div
+                        className="
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-xl
+                        bg-[var(--surface-secondary)]
+                        text-[var(--primary)]
+                        "
+                    >
+                        <Mail size={18} />
+                    </div>
+
+                    <div>
+                        <h3
+                            className="
+                            text-base
+                            font-semibold
+                            text-[var(--foreground)]
+                            "
+                        >
+                            Need Help?
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+                            text-sm
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            We're always happy to help.
+                        </p>
+                    </div>
+                </div>
+
+                <div
                     className="
-                    text-base
-                    font-semibold
-                    text-[#111827]
+                    mt-5
+                    rounded-2xl
+                    bg-[var(--surface-secondary)]
+                    px-4
+                    py-4
                     "
                 >
-                    Need Help?
-                </h3>
+                    <p
+                        className="
+                        text-xs
+                        text-[var(--foreground-secondary)]
+                        "
+                    >
+                        Email us
+                    </p>
 
-                <p
-                    className="
-                    mt-3
-                    text-sm
-                    leading-6
-                    text-[#6B7280]
-                    "
-                >
-                    If you have questions, feedback, or
-                    encounter any issues while using
-                    Kudohz, we're here to help.
-                </p>
+                    <p
+                        className="
+                        mt-1
+                        text-sm
+                        font-semibold
+                        text-[var(--primary)]
+                        "
+                    >
+                        support@kudohz.com
+                    </p>
+                </div>
+            </Card>
 
-                <p
+            <Card className="overflow-hidden p-0">
+                <button
+                    type="button"
                     className="
-                    mt-4
-                    text-sm
+                    w-full
+                    flex
+                    items-center
+                    justify-center
+                    gap-3
+                    px-5
+                    py-4
                     font-medium
-                    text-[#0E5A64]
+                    text-[var(--danger)]
+                    transition-colors
+                    hover:bg-red-500/5
+                    active:scale-[0.99]
                     "
                 >
-                    support@kudohz.com
-                </p>
-            </div>
+                    <Bug size={18} />
 
-            <button
-                className="
-                w-full
-                rounded-3xl
-                border
-                border-[#FDE2E2]
-                p-5
-                flex
-                items-center
-                justify-center
-                gap-2
-                text-[#DC2626]
-                font-medium
-                "
-            >
-                <Bug size={18} />
-
-                Report a Bug
-            </button>
+                    Report a Bug
+                </button>
+            </Card>
         </div>
     );
 }

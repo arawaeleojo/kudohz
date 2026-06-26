@@ -1,27 +1,30 @@
+"use client";
+
 import { Camera } from "lucide-react";
+
+import AvatarCircle from "./AvatarCircle";
+
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
 
 export default function EditProfileForm() {
     return (
-        <div className="space-y-6">
+        <>
             <div
                 className="
+                mb-6
+
                 flex
-                flex-col
-                items-center
+                justify-center
                 "
             >
-                <div
-                    className="
-                    relative
-                    "
-                >
-                    <div
-                        className="
-                        w-24
-                        h-24
-                        rounded-full
-                        bg-[#D9D9D9]
-                        "
+                <div className="relative">
+                    <AvatarCircle
+                        size={96}
                     />
 
                     <button
@@ -29,130 +32,60 @@ export default function EditProfileForm() {
                         absolute
                         bottom-0
                         right-0
-                        h-8
-                        w-8
-                        rounded-full
-                        bg-[#0E5A64]
+
                         flex
+                        h-9
+                        w-9
                         items-center
                         justify-center
+
+                        rounded-full
+
+                        border-2
+                        border-[var(--background)]
+
+                        bg-[var(--primary)]
+
+                        text-white
+
+                        transition-transform
+
+                        active:scale-95
                         "
                     >
                         <Camera
                             size={16}
-                            color="white"
                         />
                     </button>
                 </div>
             </div>
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                space-y-4
-                "
-            >
-                <div>
-                    <label
-                        className="
-                        block
-                        text-sm
-                        text-[#374151]
-                        mb-2
-                        "
-                    >
-                        Full Name
-                    </label>
+            <Card className="p-5">
+                <FormSection>
+                    <FormField label="Full Name">
+                        <TextInput
+                            defaultValue="Eleojo Arawa"
+                        />
+                    </FormField>
 
-                    <input
-                        defaultValue="Eleojo Arawa"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        outline-none
-                        "
-                    />
-                </div>
+                    <FormField label="Username">
+                        <TextInput
+                            defaultValue="@eleojo"
+                        />
+                    </FormField>
 
-                <div>
-                    <label
-                        className="
-                        block
-                        text-sm
-                        text-[#374151]
-                        mb-2
-                        "
-                    >
-                        Username
-                    </label>
+                    <FormField label="Email Address">
+                        <TextInput
+                            type="email"
+                            defaultValue="eleojo@email.com"
+                        />
+                    </FormField>
 
-                    <input
-                        defaultValue="@eleojo"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        outline-none
-                        "
-                    />
-                </div>
-
-                <div>
-                    <label
-                        className="
-                        block
-                        text-sm
-                        text-[#374151]
-                        mb-2
-                        "
-                    >
-                        Email Address
-                    </label>
-
-                    <input
-                        defaultValue="eleojo@email.com"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        outline-none
-                        "
-                    />
-                </div>
-
-                <button
-                    className="
-                    w-full
-                    rounded-2xl
-                    bg-[#0E5A64]
-                    py-3
-                    text-white
-                    font-medium
-                    mt-2
-                    "
-                >
-                    Save Changes
-                </button>
-            </div>
-        </div>
+                    <Button>
+                        Save Changes
+                    </Button>
+                </FormSection>
+            </Card>
+        </>
     );
 }

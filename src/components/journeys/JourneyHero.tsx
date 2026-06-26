@@ -1,15 +1,50 @@
-import { TreePine } from "lucide-react";
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+import Card from "@/components/ui/Card";
+import { identityIllustrations } from "@/constants/identityIllustrations";
 
 export default function JourneyHero() {
+    // Temporary mock data.
+    // Replace with backend data later.
+    const identity = "Writer";
+    const status = "Growing";
+    const currentDay = 24;
+    const totalDays = 90;
+
+    const description =
+        "I want to tell stories that inspire and move people.";
+
+    const progress =
+        (currentDay / totalDays) * 100;
+
+    const illustration =
+        identityIllustrations[identity];
+
+    const statusStyles = {
+        Growing: {
+            background:
+                "var(--surface-secondary)",
+            color: "var(--success)",
+        },
+
+        Nurturing: {
+            background:
+                "var(--primary-soft)",
+            color: "var(--primary)",
+        },
+
+        Planting: {
+            background:
+                "var(--warning-soft)",
+            color: "var(--warning)",
+        },
+    } as const;
+
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#E8E1D7]
-            p-6
-            "
-        >
+        <Card className="p-6">
             <div
                 className="
                 flex
@@ -18,11 +53,29 @@ export default function JourneyHero() {
                 text-center
                 "
             >
-                <TreePine
-                    size={100}
-                    strokeWidth={1.5}
-                    color="#2F5A41"
-                />
+                <motion.div
+                    animate={{
+                        rotate: [0, -1, 1, 0, 0],
+                        y: [0, -4, -2, 0, 0],
+                        scale: [1, 1.01, 1.015, 1, 1],
+                    }}
+
+                    transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                >
+                    <Image
+                        src={illustration}
+                        alt={identity}
+                        width={170}
+                        height={170}
+                        className="object-contain"
+                        priority
+                        unoptimized
+                    />
+                </motion.div>
 
                 <span
                     className="
@@ -30,45 +83,61 @@ export default function JourneyHero() {
                     px-4
                     py-1.5
                     rounded-full
-                    bg-[#EEF5F0]
-                    text-[#2F7A59]
                     text-xs
                     font-semibold
                     "
+                    style={
+                        statusStyles[
+                        status
+                        ]
+                    }
                 >
-                    Growing
+                    {status}
                 </span>
 
-                <div className="mt-5 w-full">
+                <div className="mt-6 w-full">
                     <div
                         className="
+                        mb-2
                         flex
                         items-center
                         justify-between
                         text-xs
-                        text-[#6B7280]
-                        mb-2
+                        text-[var(--foreground-secondary)]
                         "
                     >
-                        <span>Day 24</span>
+                        <span>
+                            Day {currentDay}
+                        </span>
 
-                        <span>90 Day Journey</span>
+                        <span>
+                            {totalDays} Day Journey
+                        </span>
                     </div>
 
                     <div
                         className="
                         h-2
-                        rounded-full
-                        bg-[#E8E1D7]
                         overflow-hidden
+                        rounded-full
+                        bg-[var(--progress-track)]
                         "
                     >
-                        <div
+                        <motion.div
+                            initial={{
+                                width: 0,
+                            }}
+                            animate={{
+                                width: `${progress}%`,
+                            }}
+                            transition={{
+                                duration: 1,
+                                ease: "easeOut",
+                            }}
                             className="
                             h-full
-                            w-[27%]
-                            bg-[#0E5A64]
                             rounded-full
+                            bg-[var(--primary)]
                             "
                         />
                     </div>
@@ -77,26 +146,25 @@ export default function JourneyHero() {
                         className="
                         mt-2
                         text-xs
-                        text-[#6B7280]
+                        text-[var(--foreground-secondary)]
                         "
                     >
-                        Day 24 of 90
+                        Day {currentDay} of {totalDays}
                     </p>
                 </div>
 
                 <p
                     className="
                     mt-5
+                    max-w-[270px]
                     text-sm
                     leading-7
-                    text-[#374151]
-                    max-w-[260px]
+                    text-[var(--foreground-secondary)]
                     "
                 >
-                    I want to tell stories that
-                    inspire and move people.
+                    {description}
                 </p>
             </div>
-        </div>
+        </Card>
     );
 }

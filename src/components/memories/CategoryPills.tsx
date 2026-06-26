@@ -21,39 +21,65 @@ export default function CategoryPills({
     return (
         <div
             className="
-            flex
-            gap-2
-            overflow-x-auto
-            scrollbar-hide
+            -mx-5
             mb-8
+            overflow-x-auto
+            px-5
+
+            [scrollbar-width:none]
+            [-ms-overflow-style:none]
+
+            [&::-webkit-scrollbar]:hidden
             "
         >
-            {categories.map((category) => (
-                <button
-                    key={category}
-                    onClick={() =>
-                        onSelectJourney(
-                            category
-                        )
-                    }
-                    className={`
-                        whitespace-nowrap
-                        px-5
-                        py-2.5
-                        rounded-full
-                        text-xs
-                        font-medium
-                        transition-colors
-                        ${selectedJourney ===
-                            category
-                            ? "bg-[#0E5A64] text-white"
-                            : "border border-[#E2DBCF] bg-[#EFE8DE] text-[#374151]"
-                        }
-                    `}
-                >
-                    {category}
-                </button>
-            ))}
+            <div
+                className="
+                flex
+                gap-2
+                w-max
+                pb-1
+                "
+            >
+                {categories.map((category) => {
+                    const active =
+                        selectedJourney ===
+                        category;
+
+                    return (
+                        <button
+                            key={category}
+                            onClick={() =>
+                                onSelectJourney(
+                                    category
+                                )
+                            }
+                            className={`
+                                whitespace-nowrap
+
+                                rounded-full
+
+                                px-5
+                                py-2.5
+
+                                text-xs
+                                font-semibold
+
+                                transition-all
+                                duration-200
+
+                                active:scale-95
+
+                                ${active
+                                    ? "bg-[var(--primary)] text-white shadow-sm"
+                                    : "border border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--foreground)]"
+                                }
+                            `}
+                        >
+                            {category}
+                        </button>
+                    );
+                })}
+            </div>
         </div>
     );
 }

@@ -16,24 +16,36 @@ export default function AttachmentButton({
             flex
             items-center
             gap-2
+
             rounded-full
+
             border
-            border-[#E8E1D7]
-            bg-[#F7F3EC]
+            border-[var(--border)]
+
+            bg-[var(--surface)]
+
             px-4
             py-2.5
+
             text-sm
-            text-[#374151]
-            transition-colors
-            hover:bg-[#EFE8DE]
+            font-medium
+
+            text-[var(--foreground)]
+
+            transition-all
+            duration-200
+
+            hover:bg-[var(--surface-secondary)]
+
+            active:scale-95
             "
         >
             <Icon
                 size={16}
-                color="#0E5A64"
+                className="text-[var(--primary)]"
             />
 
-            {label}
+            <span>{label}</span>
         </button>
     );
 }

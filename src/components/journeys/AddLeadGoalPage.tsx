@@ -1,5 +1,13 @@
 import SettingsHeader from "@/components/profile/SettingsHeader";
 
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
+import TextArea from "@/components/ui/forms/TextArea";
+
 export default function AddLeadGoalPage() {
     return (
         <div className="space-y-6">
@@ -11,7 +19,7 @@ export default function AddLeadGoalPage() {
                 className="
                 text-sm
                 leading-7
-                text-[#6B7280]
+                text-[var(--foreground-secondary)]
                 "
             >
                 Define a lead goal that
@@ -20,86 +28,29 @@ export default function AddLeadGoalPage() {
                 lag goal.
             </p>
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                space-y-5
-                "
-            >
-                <div>
-                    <label
-                        className="
-                        block
-                        mb-2
-                        text-sm
-                        font-medium
-                        text-[#111827]
-                        "
+            <Card className="p-5">
+                <FormSection>
+                    <FormField label="Lead Goal">
+                        <TextInput
+                            placeholder="Write Every Day"
+                        />
+                    </FormField>
+
+                    <FormField label="Why This Matters">
+                        <TextArea
+                            rows={4}
+                            placeholder="Why will this lead goal help you achieve your lag goal?"
+                        />
+                    </FormField>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
                     >
-                        Lead Goal
-                    </label>
-
-                    <input
-                        placeholder="Write Every Day"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        "
-                    />
-                </div>
-
-                <div>
-                    <label
-                        className="
-                        block
-                        mb-2
-                        text-sm
-                        font-medium
-                        text-[#111827]
-                        "
-                    >
-                        Why This Matters
-                    </label>
-
-                    <textarea
-                        rows={4}
-                        placeholder="Why will this lead goal help you achieve your lag goal?"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        resize-none
-                        "
-                    />
-                </div>
-
-                <button
-                    className="
-                    w-full
-                    rounded-2xl
-                    bg-[#0E5A64]
-                    py-3
-                    text-white
-                    font-medium
-                    "
-                >
-                    Save Lead Goal
-                </button>
-            </div>
+                        Save Lead Goal
+                    </Button>
+                </FormSection>
+            </Card>
         </div>
     );
 }

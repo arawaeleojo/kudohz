@@ -1,140 +1,333 @@
-import { Leaf } from "lucide-react";
+import {
+    Leaf,
+    Sparkles,
+    Flag,
+} from "lucide-react";
+
+import Card from "@/components/ui/Card";
 
 export default function AboutKudohz() {
     return (
         <div className="space-y-6">
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-6
-                text-center
-                "
-            >
+            <Card className="p-8 text-center">
                 <div
                     className="
                     mx-auto
-                    mb-4
+
                     flex
-                    h-16
-                    w-16
+                    h-20
+                    w-20
+
                     items-center
                     justify-center
+
                     rounded-full
-                    bg-[#EEF5F0]
+
+                    bg-[var(--surface-secondary)]
+
+                    text-[var(--primary)]
                     "
                 >
-                    <Leaf
-                        size={28}
-                        color="#0E5A64"
-                    />
+                    <Leaf size={34} />
                 </div>
 
-                <h2
+                <h1
                     className="
-                    text-2xl
+                    mt-6
+
+                    text-3xl
                     font-bold
-                    text-[#111827]
+
+                    text-[var(--foreground)]
                     "
                 >
                     Kudohz
-                </h2>
+                </h1>
 
                 <p
                     className="
                     mt-2
-                    text-sm
-                    text-[#6B7280]
-                    "
-                >
-                    Version 1.0.0
-                </p>
-            </div>
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-6
-                "
-            >
-                <h3
-                    className="
-                    text-lg
-                    font-semibold
-                    text-[#111827]
+                    text-sm
+
+                    text-[var(--foreground-secondary)]
                     "
                 >
                     Keep Becoming.
-                </h3>
-
-                <p
-                    className="
-                    mt-4
-                    text-sm
-                    leading-7
-                    text-[#374151]
-                    "
-                >
-                    Kudohz is a personal growth companion
-                    designed to help people become who
-                    they want to be through identities,
-                    journeys, memories, and accountability.
                 </p>
-
-                <p
-                    className="
-                    mt-4
-                    text-sm
-                    leading-7
-                    text-[#374151]
-                    "
-                >
-                    Instead of focusing on streaks,
-                    points, or endless productivity,
-                    Kudohz focuses on growth,
-                    consistency, and the person
-                    you are becoming.
-                </p>
-            </div>
-
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-6
-                "
-            >
-                <h3
-                    className="
-                    text-lg
-                    font-semibold
-                    text-[#111827]
-                    "
-                >
-                    Built For Growth
-                </h3>
 
                 <div
                     className="
-                    mt-4
-                    space-y-3
-                    text-sm
-                    text-[#374151]
+                    mt-5
+
+                    inline-flex
+
+                    rounded-full
+
+                    bg-[var(--surface-secondary)]
+
+                    px-4
+                    py-2
+
+                    text-xs
+                    font-semibold
+
+                    text-[var(--primary)]
                     "
                 >
-                    <p>🌱 Identities</p>
-
-                    <p>🌳 Long-term journeys</p>
-
-                    <p>📖 Meaningful memories</p>
-
-                    <p>🔥 Accountability through Kudo</p>
+                    Version 1.0.0
                 </div>
-            </div>
+            </Card>
+
+            <Card className="p-6">
+                <div className="flex items-center gap-3">
+                    <div
+                        className="
+                        flex
+
+                        h-10
+                        w-10
+
+                        items-center
+                        justify-center
+
+                        rounded-xl
+
+                        bg-[var(--surface-secondary)]
+
+                        text-[var(--primary)]
+                        "
+                    >
+                        <Sparkles size={18} />
+                    </div>
+
+                    <h2
+                        className="
+                        text-lg
+                        font-semibold
+
+                        text-[var(--foreground)]
+                        "
+                    >
+                        Our Philosophy
+                    </h2>
+                </div>
+
+                <p
+                    className="
+                    mt-5
+
+                    text-sm
+                    leading-8
+
+                    text-[var(--foreground-secondary)]
+                    "
+                >
+                    Kudohz is a personal growth
+                    companion built around one
+                    simple belief:
+                </p>
+
+                <p
+                    className="
+                    mt-5
+
+                    text-base
+                    font-semibold
+
+                    text-[var(--foreground)]
+                    "
+                >
+                    You don't become someone by
+                    chasing streaks.
+                    <br />
+                    You become someone by
+                    repeatedly showing up.
+                </p>
+
+                <p
+                    className="
+                    mt-5
+
+                    text-sm
+                    leading-8
+
+                    text-[var(--foreground-secondary)]
+                    "
+                >
+                    Instead of focusing on points,
+                    streaks, or endless
+                    productivity, Kudohz helps you
+                    build meaningful identities
+                    through consistent action,
+                    reflection, and long-term
+                    growth.
+                </p>
+            </Card>
+
+            <Card className="p-6">
+                <div className="flex items-center gap-3">
+                    <div
+                        className="
+                        flex
+
+                        h-10
+                        w-10
+
+                        items-center
+                        justify-center
+
+                        rounded-xl
+
+                        bg-[var(--surface-secondary)]
+
+                        text-[var(--primary)]
+                        "
+                    >
+                        <Flag size={18} />
+                    </div>
+
+                    <h2
+                        className="
+                        text-lg
+                        font-semibold
+
+                        text-[var(--foreground)]
+                        "
+                    >
+                        What You'll Find
+                    </h2>
+                </div>
+
+                <div className="mt-6 space-y-5">
+                    <div>
+                        <h3
+                            className="
+                            text-sm
+                            font-semibold
+
+                            text-[var(--foreground)]
+                            "
+                        >
+                            🌱 Identities
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+
+                            text-sm
+                            leading-7
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            Become the kind of
+                            person you admire.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3
+                            className="
+                            text-sm
+                            font-semibold
+
+                            text-[var(--foreground)]
+                            "
+                        >
+                            🌳 Journeys
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+
+                            text-sm
+                            leading-7
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            Grow one identity over
+                            weeks and months instead
+                            of chasing daily streaks.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3
+                            className="
+                            text-sm
+                            font-semibold
+
+                            text-[var(--foreground)]
+                            "
+                        >
+                            📖 Memories
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+
+                            text-sm
+                            leading-7
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            Capture the moments,
+                            lessons, and milestones
+                            that shape your growth.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3
+                            className="
+                            text-sm
+                            font-semibold
+
+                            text-[var(--foreground)]
+                            "
+                        >
+                            🔥 Kudo
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+
+                            text-sm
+                            leading-7
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            Reflect, stay
+                            accountable, and keep
+                            moving forward with your
+                            personal growth coach.
+                        </p>
+                    </div>
+                </div>
+            </Card>
+
+            <p
+                className="
+                pb-6
+
+                text-center
+                text-xs
+
+                text-[var(--foreground-secondary)]
+                "
+            >
+                Built with purpose for people who
+                believe growth is a lifelong
+                journey.
+            </p>
         </div>
     );
 }

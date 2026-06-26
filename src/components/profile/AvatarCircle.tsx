@@ -1,9 +1,13 @@
 interface AvatarCircleProps {
   size?: number;
+  initials?: string;
+  image?: string;
 }
 
 export default function AvatarCircle({
   size = 72,
+  initials = "EA",
+  image,
 }: AvatarCircleProps) {
   return (
     <div
@@ -12,23 +16,49 @@ export default function AvatarCircle({
         height: size,
       }}
       className="
-      rounded-full
-      bg-[#0E5A64]
-      flex
-      items-center
-      justify-center
-      flex-shrink-0
-      "
+            relative
+
+            flex
+            items-center
+            justify-center
+
+            overflow-hidden
+            shrink-0
+
+            rounded-full
+
+            border-2
+            border-[var(--border)]
+
+            bg-[var(--surface-secondary)]
+
+            shadow-sm
+            "
     >
-      <span
-        className="
-        text-white
-        font-bold
-        text-xl
-        "
-      >
-        EA
-      </span>
+      {image ? (
+        <img
+          src={image}
+          alt="Profile"
+          className="
+                    h-full
+                    w-full
+                    object-cover
+                    "
+        />
+      ) : (
+        <span
+          className="
+                    font-bold
+
+                    text-[var(--primary)]
+                    "
+          style={{
+            fontSize: size * 0.32,
+          }}
+        >
+          {initials}
+        </span>
+      )}
     </div>
   );
 }

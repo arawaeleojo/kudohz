@@ -6,6 +6,8 @@ import {
     Pencil,
 } from "lucide-react";
 
+import IconButton from "@/components/ui/IconButton";
+
 interface JourneyHeaderProps {
     title: string;
     showEditButton?: boolean;
@@ -19,19 +21,26 @@ export default function JourneyHeader({
 
     return (
         <>
-            <div
+            <header
                 className="
                 fixed
                 top-0
                 left-1/2
                 -translate-x-1/2
+                z-40
+
                 w-full
                 max-w-sm
-                bg-[#F7F3EC]
+
                 px-5
                 pt-6
                 pb-4
-                z-40
+
+                bg-[var(--background)]
+                border-b
+                border-[var(--border)]
+
+                backdrop-blur-md
                 "
             >
                 <div
@@ -45,25 +54,24 @@ export default function JourneyHeader({
                         className="
                         flex
                         items-center
-                        gap-3
+                        gap-2
                         "
                     >
-                        <button
+                        <IconButton
                             onClick={() =>
                                 router.back()
                             }
                         >
                             <ChevronLeft
-                                size={24}
-                                color="#111827"
+                                size={20}
                             />
-                        </button>
+                        </IconButton>
 
                         <h1
                             className="
                             text-xl
                             font-bold
-                            text-[#111827]
+                            text-[var(--foreground)]
                             "
                         >
                             {title}
@@ -71,7 +79,7 @@ export default function JourneyHeader({
                     </div>
 
                     {showEditButton && (
-                        <button
+                        <IconButton
                             onClick={() =>
                                 router.push(
                                     "/journeys/1/edit"
@@ -80,14 +88,13 @@ export default function JourneyHeader({
                         >
                             <Pencil
                                 size={18}
-                                color="#111827"
                             />
-                        </button>
+                        </IconButton>
                     )}
                 </div>
-            </div>
+            </header>
 
-            <div className="h-[72px]" />
+            <div className="h-[84px]" />
         </>
     );
 }

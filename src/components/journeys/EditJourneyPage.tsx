@@ -1,6 +1,15 @@
 import JourneyHeader from "./JourneyHeader";
 import ArchiveJourney from "./ArchiveJourney";
 
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
+import TextArea from "@/components/ui/forms/TextArea";
+import Select from "@/components/ui/forms/Select";
+
 export default function EditJourneyPage() {
     return (
         <div className="space-y-6">
@@ -8,132 +17,57 @@ export default function EditJourneyPage() {
                 title="Edit Journey"
             />
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                space-y-4
-                "
-            >
-                <div>
-                    <label
-                        className="
-                        text-sm
-                        text-[#374151]
-                        block
-                        mb-2
-                        "
+            <Card className="p-5">
+                <FormSection>
+                    <FormField label="Journey Name">
+                        <TextInput
+                            defaultValue="Writer"
+                            placeholder="Journey Name"
+                        />
+                    </FormField>
+
+                    <FormField label="Description">
+                        <TextArea
+                            rows={4}
+                            defaultValue="I want to tell stories that inspire and move people."
+                            placeholder="Describe your journey..."
+                        />
+                    </FormField>
+
+                    <FormField label="Timeline">
+                        <Select defaultValue="90">
+                            <option value="30">
+                                30 Days
+                            </option>
+
+                            <option value="90">
+                                90 Days
+                            </option>
+
+                            <option value="180">
+                                180 Days
+                            </option>
+
+                            <option value="270">
+                                270 Days
+                            </option>
+
+                            <option value="365">
+                                365 Days
+                            </option>
+                        </Select>
+                    </FormField>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
                     >
-                        Journey Name
-                    </label>
+                        Save Changes
+                    </Button>
+                </FormSection>
+            </Card>
 
-                    <input
-                        defaultValue="Writer"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        "
-                    />
-                </div>
-
-                <div>
-                    <label
-                        className="
-                        text-sm
-                        text-[#374151]
-                        block
-                        mb-2
-                        "
-                    >
-                        Description
-                    </label>
-
-                    <textarea
-                        rows={4}
-                        defaultValue="I want to tell stories that inspire and move people."
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        resize-none
-                        "
-                    />
-                </div>
-
-                <div>
-                    <label
-                        className="
-                        text-sm
-                        text-[#374151]
-                        block
-                        mb-2
-                        "
-                    >
-                        Timeline
-                    </label>
-
-                    <select
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        "
-                    >
-                        <option>
-                            30 Days
-                        </option>
-
-                        <option>
-                            90 Days
-                        </option>
-
-                        <option>
-                            180 Days
-                        </option>
-
-                        <option>
-                            270 Days
-                        </option>
-
-                        <option>
-                            365 Days
-                        </option>
-                    </select>
-                </div>
-
-                <button
-                    className="
-                    w-full
-                    rounded-2xl
-                    bg-[#0E5A64]
-                    py-3
-                    text-white
-                    font-medium
-                    "
-                >
-                    Save Changes
-                </button>
-
-            </div>
-                <ArchiveJourney />
+            <ArchiveJourney />
         </div>
     );
 }

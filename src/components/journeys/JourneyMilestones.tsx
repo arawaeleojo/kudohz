@@ -1,29 +1,15 @@
+"use client";
+
 import {
     CheckCircle2,
     Circle,
 } from "lucide-react";
 
+import CardSection from "@/components/ui/CardSection";
+
 export default function JourneyMilestones() {
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#E8E1D7]
-            p-5
-            "
-        >
-            <h2
-                className="
-                text-base
-                font-semibold
-                text-[#111827]
-                mb-5
-                "
-            >
-                Journey Milestones
-            </h2>
-
+        <CardSection title="Journey Milestones">
             <div className="space-y-4">
                 <div
                     className="
@@ -34,10 +20,10 @@ export default function JourneyMilestones() {
                 >
                     <CheckCircle2
                         size={18}
-                        color="#2F7A59"
+                        className="text-[var(--success)]"
                     />
 
-                    <span className="text-sm">
+                    <span className="text-sm text-[var(--foreground)]">
                         Started Journey
                     </span>
                 </div>
@@ -54,11 +40,11 @@ export default function JourneyMilestones() {
                         h-3
                         w-3
                         rounded-full
-                        bg-[#0E5A64]
+                        bg-[var(--primary)]
                         "
                     />
 
-                    <span className="text-sm">
+                    <span className="text-sm text-[var(--foreground)]">
                         Building Consistency
                     </span>
                 </div>
@@ -72,14 +58,14 @@ export default function JourneyMilestones() {
                 >
                     <Circle
                         size={18}
-                        color="#9CA3AF"
+                        className="text-[var(--foreground-secondary)]"
                     />
 
-                    <span className="text-sm">
+                    <span className="text-sm text-[var(--foreground)]">
                         Mastery
                     </span>
                 </div>
             </div>
-        </div>
+        </CardSection>
     );
 }

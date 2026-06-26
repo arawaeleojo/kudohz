@@ -62,53 +62,48 @@ export default function TodayActionsSection() {
         actionId: number
     ) {
         setTodaysFocus((previous) => {
-            const updated = previous.map(
-                (identity) => {
-                    if (
-                        identity.identity !==
-                        identityName
-                    ) {
-                        return identity;
-                    }
-
-                    const updatedActions =
-                        identity.actions.map(
-                            (action) =>
-                                action.id ===
-                                    actionId
-                                    ? {
-                                        ...action,
-                                        completed:
-                                            !action.completed,
-                                    }
-                                    : action
-                        );
-
-                    const allCompleted =
-                        updatedActions.every(
-                            (action) =>
-                                action.completed
-                        );
-
-                    if (allCompleted) {
-                        setCompletedIdentity(
-                            identity.identity
-                        );
-
-                        setShowCelebration(
-                            true
-                        );
-                    }
-
-                    return {
-                        ...identity,
-                        actions:
-                            updatedActions,
-                    };
+            return previous.map((identity) => {
+                if (
+                    identity.identity !==
+                    identityName
+                ) {
+                    return identity;
                 }
-            );
 
-            return updated;
+                const updatedActions =
+                    identity.actions.map(
+                        (action) =>
+                            action.id ===
+                                actionId
+                                ? {
+                                    ...action,
+                                    completed:
+                                        !action.completed,
+                                }
+                                : action
+                    );
+
+                const allCompleted =
+                    updatedActions.every(
+                        (action) =>
+                            action.completed
+                    );
+
+                if (allCompleted) {
+                    setCompletedIdentity(
+                        identity.identity
+                    );
+
+                    setShowCelebration(
+                        true
+                    );
+                }
+
+                return {
+                    ...identity,
+                    actions: updatedActions,
+                };
+            });
         });
     }
 
@@ -128,8 +123,11 @@ export default function TodayActionsSection() {
                         className="
                         text-lg
                         font-semibold
-                        text-[#111827]
                         "
+                        style={{
+                            color:
+                                "var(--foreground)",
+                        }}
                     >
                         Today's Focus
                     </h2>
@@ -138,8 +136,11 @@ export default function TodayActionsSection() {
                         className="
                         mt-1
                         text-sm
-                        text-[#6B7280]
                         "
+                        style={{
+                            color:
+                                "var(--foreground-secondary)",
+                        }}
                     >
                         {totalActions} actions
                         across{" "}
@@ -158,20 +159,49 @@ export default function TodayActionsSection() {
                                     identity.identity
                                 }
                             >
-                                <h3
+                                <div
                                     className="
+                                    flex
+                                    items-center
+                                    gap-2
                                     mb-3
-                                    text-sm
-                                    font-semibold
-                                    text-[#0E5A64]
                                     "
                                 >
-                                    {
-                                        identity.identity
-                                    }
-                                </h3>
+                                    <div
+                                        className="
+                                        h-2
+                                        w-2
+                                        rounded-full
+                                        "
+                                        style={{
+                                            background:
+                                                "var(--primary)",
+                                        }}
+                                    />
 
-                                <div className="space-y-2">
+                                    <h3
+                                        className="
+                                        text-sm
+                                        font-semibold
+                                        tracking-wide
+                                        uppercase
+                                        "
+                                        style={{
+                                            color:
+                                                "var(--primary)",
+                                        }}
+                                    >
+                                        {
+                                            identity.identity
+                                        }
+                                    </h3>
+                                </div>
+
+                                <div
+                                    className="
+                                    space-y-2
+                                    "
+                                >
                                     {identity.actions.map(
                                         (
                                             action

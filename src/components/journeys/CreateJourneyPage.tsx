@@ -2,7 +2,14 @@
 
 import JourneyHeader from "./JourneyHeader";
 import JourneyTimelineSelector from "./JourneyTimelineSelector";
+
+import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
+import TextArea from "@/components/ui/forms/TextArea";
 
 export default function CreateJourneyPage() {
     return (
@@ -11,93 +18,44 @@ export default function CreateJourneyPage() {
                 title="New Journey"
             />
 
-            <div>
-                <p
-                    className="
-                    text-sm
-                    leading-7
-                    text-[#6B7280]
-                    "
-                >
-                    Create a new journey and define
-                    the person you want to become.
-                </p>
-            </div>
-
-            <div
+            <p
                 className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                space-y-5
+                text-sm
+                leading-7
+                text-[var(--foreground-secondary)]
                 "
             >
-                <div>
-                    <label
-                        className="
-                        block
-                        mb-2
-                        text-sm
-                        font-medium
-                        text-[#111827]
-                        "
+                Create a new journey and define
+                the person you want to become.
+            </p>
+
+            <Card className="p-5">
+                <FormSection>
+                    <FormField label="Journey Name">
+                        <TextInput
+                            placeholder="Writer"
+                        />
+                    </FormField>
+
+                    <FormField label="Why">
+                        <TextArea
+                            rows={4}
+                            placeholder="Why do you want to become this?"
+                        />
+                    </FormField>
+
+                    <FormField label="Journey Timeline">
+                        <JourneyTimelineSelector />
+                    </FormField>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
                     >
-                        Journey Name
-                    </label>
-
-                    <input
-                        placeholder="Writer"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        "
-                    />
-                </div>
-
-                
-                <div>
-                    <label
-                        className="
-                            block
-                            mb-2
-                            text-sm
-                            font-medium
-                            text-[#111827]
-                            "
-                    >
-                        Why
-                    </label>
-
-                    <textarea
-                        rows={4}
-                        placeholder="Why do you want to become this?"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        resize-none
-                        "
-                    />
-                </div>
-
-                <JourneyTimelineSelector />
-
-                <Button>
-                    Create Journey
-                </Button>
-            </div>
+                        Create Journey
+                    </Button>
+                </FormSection>
+            </Card>
         </div>
     );
 }

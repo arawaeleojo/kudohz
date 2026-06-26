@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import MessageBubble from "./MessageBubble";
 
 interface Message {
@@ -31,18 +35,40 @@ export default function ConversationList() {
     return (
         <div
             className="
-                mt-6
-                space-y-4
-                pb-32
-                "
+            mt-6
+            space-y-4
+            pb-32
+            "
         >
-            {messages.map((message) => (
-                <MessageBubble
-                    key={message.id}
-                    role={message.role}
-                    content={message.content}
-                />
-            ))}
+            {messages.map(
+                (message, index) => (
+                    <motion.div
+                        key={message.id}
+                        initial={{
+                            opacity: 0,
+                            y: 14,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                        }}
+                        transition={{
+                            duration: 0.35,
+                            delay:
+                                index * 0.18,
+                        }}
+                    >
+                        <MessageBubble
+                            role={
+                                message.role
+                            }
+                            content={
+                                message.content
+                            }
+                        />
+                    </motion.div>
+                )
+            )}
         </div>
     );
 }

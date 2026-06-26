@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 interface JourneyTabsProps {
     selectedTab: string;
     onChange: (
@@ -5,66 +9,113 @@ interface JourneyTabsProps {
     ) => void;
 }
 
+const tabs = [
+    {
+        label: "Active",
+        value: "active",
+    },
+    {
+        label: "Completed",
+        value: "completed",
+    },
+    {
+        label: "Archived",
+        value: "archived",
+    },
+];
+
 export default function JourneyTabs({
     selectedTab,
     onChange,
 }: JourneyTabsProps) {
-    const tabs = [
-        {
-            label: "Active",
-            value: "active",
-        },
-        {
-            label: "Completed",
-            value: "completed",
-        },
-        {
-            label: "Archived",
-            value: "archived",
-        },
-    ];
-
     return (
         <div
             className="
+            mb-8
+
             grid
             grid-cols-3
-            gap-2
-            mb-8
+
             rounded-full
-            bg-[#EFE8DE]
+
+            border
+            border-[var(--border)]
+
+            bg-[var(--surface-secondary)]
+
             p-1
             "
         >
-            {tabs.map((tab) => (
-                <button
-                    key={tab.value}
-                    onClick={() =>
-                        onChange(tab.value)
-                    }
-                    className={
-                        selectedTab ===
-                            tab.value
-                            ? `
-                            py-2.5
-                            rounded-full
-                            bg-[#0E5A64]
-                            text-white
-                            text-sm
-                            font-medium
-                          `
-                            : `
-                            py-2.5
-                            rounded-full
-                            text-[#374151]
-                            text-sm
-                            font-medium
-                          `
-                    }
-                >
-                    {tab.label}
-                </button>
-            ))}
+            {tabs.map((tab) => {
+                const active =
+                    selectedTab === tab.value;
+
+                return (
+                    <button
+                        key={tab.value}
+                        onClick={() =>
+                            onChange(
+                                tab.value
+                            )
+                        }
+                        className="
+                        relative
+
+                        rounded-full
+
+                        py-2.5
+
+                        text-sm
+                        font-medium
+
+                        transition-colors
+
+                        duration-200
+
+                        active:scale-95
+                        "
+                    >
+                        {active && (
+                            <motion.div
+                                layoutId="journey-tab"
+
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 450,
+                                    damping: 35,
+                                }}
+
+                                className="
+                                absolute
+                                inset-0
+
+                                rounded-full
+
+                                bg-[var(--primary)]
+
+                                shadow-sm
+                                "
+                            />
+                        )}
+
+                        <span
+                            className={`
+                                relative
+                                z-10
+
+                                transition-colors
+
+                                ${active
+                                    ? "text-white"
+                                    : "text-[var(--foreground-secondary)]"
+                                }
+                            `}
+                        >
+                            {tab.label}
+                        </span>
+                    </button>
+                );
+            })}
         </div>
     );
 }

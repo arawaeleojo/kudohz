@@ -1,6 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import { Send } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ChatInput() {
+    const [message, setMessage] =
+        useState("");
+
+    const hasMessage =
+        message.trim().length > 0;
+
     return (
         <div
             className="
@@ -20,51 +30,100 @@ export default function ChatInput() {
                 px-5
                 "
             >
-                <div
+                <motion.div
+                    whileFocus={{
+                        scale: 1.01,
+                    }}
+                    transition={{
+                        duration: 0.2,
+                    }}
                     className="
                     flex
                     items-center
+
                     rounded-full
+
                     border
-                    border-[#D8D0C3]
-                    bg-[#F7F3EC]
+                    border-[var(--border)]
+
+                    bg-[var(--surface)]
+
                     px-2
                     py-2
+
                     shadow-sm
+
+                    transition-all
+                    duration-200
+
+                    focus-within:border-[var(--primary)]
                     "
                 >
                     <input
                         type="text"
+                        value={message}
+                        onChange={(e) =>
+                            setMessage(
+                                e.target.value
+                            )
+                        }
                         placeholder="Message Kudo..."
                         className="
                         flex-1
+
                         bg-transparent
+
                         px-3
+
                         text-sm
-                        text-[#111827]
-                        placeholder:text-[#9CA3AF]
+
+                        text-[var(--foreground)]
+
+                        placeholder:text-[var(--foreground-secondary)]
+
                         outline-none
                         "
                     />
 
-                    <button
-                        className="
-                        flex
-                        h-10
-                        w-10
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#0E5A64]
-                        shrink-0
-                        "
+                    <motion.button
+                        whileHover={{
+                            scale: hasMessage
+                                ? 1.05
+                                : 1,
+                        }}
+                        whileTap={{
+                            scale: hasMessage
+                                ? 0.95
+                                : 1,
+                        }}
+                        disabled={!hasMessage}
+                        className={`
+                            flex
+
+                            h-10
+                            w-10
+
+                            shrink-0
+
+                            items-center
+                            justify-center
+
+                            rounded-full
+
+                            transition-all
+
+                            ${hasMessage
+                                ? "bg-[var(--primary)]"
+                                : "bg-[var(--border)]"
+                            }
+                        `}
                     >
                         <Send
                             size={16}
                             color="white"
                         />
-                    </button>
-                </div>
+                    </motion.button>
+                </motion.div>
             </div>
         </div>
     );

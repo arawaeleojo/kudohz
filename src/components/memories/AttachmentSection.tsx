@@ -9,22 +9,26 @@ import AttachmentButton from "./AttachmentButton";
 export default function AttachmentSection() {
     return (
         <div>
-            <div className="mb-3">
-                <h3
+            <div className="mb-4">
+                {/* <h3
                     className="
                     text-sm
-                    font-medium
-                    text-[#111827]
+                    font-semibold
+
+                    text-[var(--foreground)]
                     "
                 >
                     Attachments
-                </h3>
+                </h3> */}
 
                 <p
                     className="
                     mt-1
+
                     text-xs
-                    text-[#6B7280]
+                    leading-6
+
+                    text-[var(--foreground-secondary)]
                     "
                 >
                     Optional. Add a photo,

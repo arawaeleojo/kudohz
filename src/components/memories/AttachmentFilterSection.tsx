@@ -39,43 +39,71 @@ export default function AttachmentFilterSection() {
         <div>
             <h2
                 className="
+                mb-4
+
                 text-base
                 font-semibold
-                text-[#111827]
-                mb-4
+
+                text-[var(--foreground)]
                 "
             >
                 Attachment Type
             </h2>
 
-            <div className="flex flex-wrap gap-3">
+            <div
+                className="
+                flex
+                flex-wrap
+                gap-3
+                "
+            >
                 {attachments.map(
-                    (attachment) => (
-                        <button
-                            key={attachment}
-                            onClick={() =>
-                                toggleAttachment(
-                                    attachment
-                                )
-                            }
-                            className={`
-                                rounded-full
-                                px-4
-                                py-2.5
-                                text-sm
-                                font-medium
-                                transition-colors
-                                ${selectedAttachments.includes(
+                    (
+                        attachment
+                    ) => {
+                        const active =
+                            selectedAttachments.includes(
                                 attachment
-                            )
-                                    ? "bg-[#0E5A64] text-white"
-                                    : "bg-[#EFE8DE] border border-[#E2DBCF] text-[#374151]"
+                            );
+
+                        return (
+                            <button
+                                key={
+                                    attachment
                                 }
-                            `}
-                        >
-                            {attachment}
-                        </button>
-                    )
+                                onClick={() =>
+                                    toggleAttachment(
+                                        attachment
+                                    )
+                                }
+                                className={`
+                                    rounded-full
+
+                                    border
+
+                                    px-4
+                                    py-2.5
+
+                                    text-sm
+                                    font-medium
+
+                                    transition-all
+                                    duration-200
+
+                                    active:scale-95
+
+                                    ${active
+                                        ? "border-[var(--primary)] bg-[var(--primary)] text-white shadow-sm"
+                                        : "border-[var(--border)] bg-[var(--surface-secondary)] text-[var(--foreground)]"
+                                    }
+                                `}
+                            >
+                                {
+                                    attachment
+                                }
+                            </button>
+                        );
+                    }
                 )}
             </div>
         </div>

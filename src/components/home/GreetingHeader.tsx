@@ -19,8 +19,11 @@ export default function GreetingHeader() {
                 <p
                     className="
                     text-sm
-                    text-[#374151]
                     "
+                    style={{
+                        color:
+                            "var(--foreground-secondary)",
+                    }}
                 >
                     Good morning,
                 </p>
@@ -37,24 +40,31 @@ export default function GreetingHeader() {
                         className="
                         text-4xl
                         font-extrabold
-                        text-[#111827]
                         leading-none
                         "
+                        style={{
+                            color:
+                                "var(--foreground)",
+                        }}
                     >
                         Eleojo
                     </h1>
 
                     <Leaf
                         size={18}
-                        color="#9CB8AA"
+                        style={{
+                            color:
+                                "var(--success)",
+                        }}
                     />
                 </div>
 
                 <p
-                    className="
-                    mt-3
-                    text-[#374151]
-                    "
+                    className="mt-3"
+                    style={{
+                        color:
+                            "var(--foreground-secondary)",
+                    }}
                 >
                     Keep becoming.
                 </p>
@@ -66,11 +76,26 @@ export default function GreetingHeader() {
                         "/notifications"
                     )
                 }
-                className="mt-1"
+                className="
+                mt-1
+                h-10
+                w-10
+                rounded-full
+                flex
+                items-center
+                justify-center
+                transition-all
+                duration-200
+                hover:bg-[var(--surface-secondary)]
+                active:scale-95
+                "
             >
                 <Bell
                     size={22}
-                    color="#111827"
+                    style={{
+                        color:
+                            "var(--foreground)",
+                    }}
                 />
             </button>
         </div>

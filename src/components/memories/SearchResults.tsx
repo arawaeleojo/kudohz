@@ -32,7 +32,8 @@ export default function SearchResults({
                     className="
                     text-lg
                     font-semibold
-                    text-[#111827]
+
+                    text-[var(--foreground)]
                     "
                 >
                     No memories found
@@ -41,8 +42,10 @@ export default function SearchResults({
                 <p
                     className="
                     mt-2
+
                     text-sm
-                    text-[#6B7280]
+
+                    text-[var(--foreground-secondary)]
                     "
                 >
                     Try another keyword
@@ -54,15 +57,25 @@ export default function SearchResults({
 
     if (!query) {
         return (
-            <p
+            <div
                 className="
-                text-sm
-                text-[#6B7280]
+                py-12
+
+                text-center
                 "
             >
-                Search by title,
-                reflection or journey.
-            </p>
+                <p
+                    className="
+                    text-sm
+
+                    text-[var(--foreground-secondary)]
+                    "
+                >
+                    Search by title,
+                    reflection,
+                    or journey.
+                </p>
+            </div>
         );
     }
 
@@ -71,7 +84,9 @@ export default function SearchResults({
             {results.map(
                 (memory) => (
                     <MemoryCard
-                        key={memory.title}
+                        key={
+                            memory.title
+                        }
                         image={
                             memory.image
                         }

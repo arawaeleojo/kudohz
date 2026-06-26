@@ -1,24 +1,13 @@
-import SettingsHeader from "@/components/profile/SettingsHeader";
+import PageIntro from "@/components/ui/PageIntro";
 import LagGoalsList from "./LagGoalsList";
 
 export default function LagGoalsPage() {
     return (
         <div className="space-y-6">
-            <SettingsHeader
+            <PageIntro
                 title="Lag Goals"
+                description="These are the outcomes you're working toward through this journey."
             />
-
-            <p
-                className="
-                text-sm
-                leading-7
-                text-[#6B7280]
-                "
-            >
-                These are the outcomes
-                you're working toward
-                through this journey.
-            </p>
 
             <LagGoalsList />
         </div>

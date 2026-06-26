@@ -1,50 +1,110 @@
+"use client";
+
+import { useState } from "react";
+import { Trash2 } from "lucide-react";
+
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+import ActionConfirmationDialog from "@/components/ui/ActionConfirmationDialog";
+
 export default function DeleteMemory() {
+    const [open, setOpen] =
+        useState(false);
+
+    function handleDelete() {
+        setOpen(false);
+
+        // TODO:
+        // Delete memory here
+    }
+
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#F5CACA]
-            p-5
-            "
-        >
-            <h3
+        <>
+            <Card
                 className="
-                text-base
-                font-semibold
-                text-[#DC2626]
+                border-[var(--danger)]
+                p-5
                 "
             >
-                Delete Memory
-            </h3>
+                <div
+                    className="
+                    flex
+                    items-center
+                    gap-3
+                    "
+                >
+                    <div
+                        className="
+                        flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
 
-            <p
-                className="
-                mt-2
-                text-sm
-                leading-6
-                text-[#6B7280]
-                "
-            >
-                Permanently remove this
-                memory. This action
-                cannot be undone.
-            </p>
+                        rounded-2xl
 
-            <button
-                className="
-                mt-5
-                w-full
-                rounded-2xl
-                border
-                border-[#DC2626]
-                py-3
-                text-[#DC2626]
-                font-medium
-                "
-            >
-                Delete Memory
-            </button>
-        </div>
+                        bg-red-500/10
+
+                        text-[var(--danger)]
+                        "
+                    >
+                        <Trash2 size={20} />
+                    </div>
+
+                    <div>
+                        <h3
+                            className="
+                            text-base
+                            font-semibold
+
+                            text-[var(--danger)]
+                            "
+                        >
+                            Delete Memory
+                        </h3>
+
+                        <p
+                            className="
+                            mt-1
+
+                            text-sm
+
+                            text-[var(--foreground-secondary)]
+                            "
+                        >
+                            Permanently remove this
+                            memory. This action
+                            cannot be undone.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="mt-6">
+                    <Button
+                        variant="danger"
+                        onClick={() =>
+                            setOpen(true)
+                        }
+                    >
+                        Delete Memory
+                    </Button>
+                </div>
+            </Card>
+
+            <ActionConfirmationDialog
+                open={open}
+                icon={<Trash2 size={28} />}
+                title="Delete Memory?"
+                description="This memory will be permanently deleted. This action cannot be undone."
+                confirmText="Delete Memory"
+                destructive
+                onCancel={() =>
+                    setOpen(false)
+                }
+                onConfirm={
+                    handleDelete
+                }
+            />
+        </>
     );
 }

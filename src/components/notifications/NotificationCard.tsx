@@ -7,6 +7,8 @@ import {
     Sparkles,
 } from "lucide-react";
 
+import Card from "@/components/ui/Card";
+
 interface NotificationCardProps {
     title: string;
     description: string;
@@ -28,56 +30,60 @@ export default function NotificationCard({
         kudo: (
             <Flame
                 size={18}
-                color="#0E5A64"
+                style={{
+                    color: "var(--primary)",
+                }}
             />
         ),
 
         memory: (
             <BookOpen
                 size={18}
-                color="#0E5A64"
+                style={{
+                    color: "var(--primary)",
+                }}
             />
         ),
 
         milestone: (
             <Leaf
                 size={18}
-                color="#2F7A59"
+                style={{
+                    color: "var(--success)",
+                }}
             />
         ),
 
         journey: (
             <TreePine
                 size={18}
-                color="#2F5A41"
+                style={{
+                    color: "var(--success)",
+                }}
             />
         ),
 
         action: (
             <CircleCheck
                 size={18}
-                color="#0E5A64"
+                style={{
+                    color: "var(--primary)",
+                }}
             />
         ),
 
         achievement: (
             <Sparkles
                 size={18}
-                color="#E0A100"
+                style={{
+                    color: "var(--warning)",
+                }}
             />
         ),
     };
 
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#E8E1D7]
-            bg-[#F7F3EC]
-            p-4
-            "
-        >
+        <Card className="p-4">
             <div
                 className="
                 flex
@@ -98,7 +104,7 @@ export default function NotificationCard({
                         className="
                         text-sm
                         font-semibold
-                        text-[#111827]
+                        text-[var(--foreground)]
                         "
                     >
                         {title}
@@ -108,14 +114,14 @@ export default function NotificationCard({
                         className="
                         mt-1
                         text-sm
-                        text-[#6B7280]
                         leading-6
+                        text-[var(--foreground-secondary)]
                         "
                     >
                         {description}
                     </p>
                 </div>
             </div>
-        </div>
+        </Card>
     );
 }

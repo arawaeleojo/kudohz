@@ -1,5 +1,14 @@
 import AttachmentSection from "./AttachmentSection";
 
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
+import TextArea from "@/components/ui/forms/TextArea";
+import Select from "@/components/ui/forms/Select";
+
 interface MemoryFormProps {
     mode: "create" | "edit";
 }
@@ -10,137 +19,76 @@ export default function MemoryForm({
     const editing = mode === "edit";
 
     return (
-        <div className="space-y-6">
-            <div>
-                
-                <label
-                    className="
-                    block
-                    mb-2
-                    text-sm
-                    font-medium
-                    text-[#111827]
-                    "
-                >
-                    Journey
-                </label>
+        <Card className="p-5">
+            <FormSection>
+                <FormField label="Journey">
+                    <Select
+                        defaultValue={
+                            editing
+                                ? "Writer"
+                                : ""
+                        }
+                    >
+                        {!editing && (
+                            <option value="">
+                                Select a journey
+                            </option>
+                        )}
 
-                <select
-                    className="
-                    w-full
-                    rounded-2xl
-                    border
-                    border-[#E8E1D7]
-                    bg-[#F7F3EC]
-                    px-4
-                    py-3
-                    text-sm
-                    "
-                    defaultValue={
-                        editing
-                        ? "Writer"
-                        : ""
-                    }
-                >
-                    {!editing && (
-                        <option value="">
-                            Select a journey
+                        <option value="Writer">
+                            Writer
                         </option>
-                    )}
 
-                    <option>Writer</option>
-                    <option>Designer</option>
-                    <option>Reader</option>
-                    <option>Athlete</option>
-                </select>
-            </div>
-            
-            <AttachmentSection />
-            
+                        <option value="Designer">
+                            Designer
+                        </option>
 
-            <div>
-                <label
-                    className="
-                    block
-                    mb-2
-                    text-sm
-                    font-medium
-                    text-[#111827]
-                    "
+                        <option value="Reader">
+                            Reader
+                        </option>
+
+                        <option value="Athlete">
+                            Athlete
+                        </option>
+                    </Select>
+                </FormField>
+
+                <FormField label="Attachments">
+                    <AttachmentSection />
+                </FormField>
+
+                <FormField label="Title">
+                    <TextInput
+                        defaultValue={
+                            editing
+                                ? "Morning Writing Session"
+                                : ""
+                        }
+                        placeholder="Give this memory a title"
+                    />
+                </FormField>
+
+                <FormField label="Reflection">
+                    <TextArea
+                        rows={8}
+                        defaultValue={
+                            editing
+                                ? "Today I finally sat down and started writing again..."
+                                : ""
+                        }
+                        placeholder="What happened? What did you learn? Why does this moment matter?"
+                    />
+                </FormField>
+
+                <Button
+                    type="submit"
+                    variant="primary"
                 >
-                    Title
-                </label>
-
-                <input
-                    defaultValue={
-                        editing
-                            ? "Morning Writing Session"
-                            : ""
-                    }
-                    placeholder="Give this memory a title"
-                    className="
-                    w-full
-                    rounded-2xl
-                    border
-                    border-[#E8E1D7]
-                    bg-[#F7F3EC]
-                    px-4
-                    py-3
-                    text-sm
-                    "
-                />
-            </div>
-
-            <div>
-                <label
-                    className="
-                    block
-                    mb-2
-                    text-sm
-                    font-medium
-                    text-[#111827]
-                    "
-                >
-                    Capture this moment
-                </label>
-
-                <textarea
-                    rows={8}
-                    defaultValue={
-                        editing
-                            ? "Today I finally sat down and started writing again..."
-                            : ""
-                    }
-                    placeholder="What happened? What did you learn? Why does this moment matter?"
-                    className="
-                    w-full
-                    rounded-2xl
-                    border
-                    border-[#E8E1D7]
-                    bg-[#F7F3EC]
-                    px-4
-                    py-3
-                    text-sm
-                    leading-7
-                    resize-none
-                    "
-                />
-            </div>
-
-            <button
-                className="
-                w-full
-                rounded-2xl
-                bg-[#0E5A64]
-                py-3
-                text-white
-                font-medium
-                "
-            >
-                {editing
-                    ? "Save Changes"
-                    : "Save Memory"}
-            </button>
-        </div>
+                    {editing
+                        ? "Save Changes"
+                        : "Save Memory"}
+                </Button>
+            </FormSection>
+        </Card>
     );
 }

@@ -1,34 +1,53 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { CalendarDays } from "lucide-react";
+
+import Card from "@/components/ui/Card";
+
 export default function MemoryHero() {
     return (
-        <div
-            className="
-            rounded-3xl
-            overflow-hidden
-            border
-            border-[#E8E1D7]
-            "
-        >
-            <img
-                src="https://picsum.photos/600/400"
-                alt="Memory"
-                className="
-                w-full
-                h-56
-                object-cover
-                "
-            />
+        <Card className="overflow-hidden p-0">
+            <motion.div
+                initial={{
+                    opacity: 0,
+                    scale: 0.97,
+                }}
+                animate={{
+                    opacity: 1,
+                    scale: 1,
+                }}
+                transition={{
+                    duration: 0.4,
+                }}
+                className="relative h-56"
+            >
+                <Image
+                    src="https://picsum.photos/600/400"
+                    alt="Memory"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                />
+            </motion.div>
 
             <div className="p-5">
                 <span
                     className="
                     inline-flex
+
+                    rounded-full
+
+                    bg-[var(--surface-secondary)]
+
                     px-3
                     py-1
-                    rounded-full
-                    bg-[#EEF5F0]
-                    text-[#2F7A59]
+
                     text-xs
-                    font-medium
+                    font-semibold
+
+                    text-[var(--success)]
                     "
                 >
                     Writer
@@ -37,24 +56,38 @@ export default function MemoryHero() {
                 <h2
                     className="
                     mt-4
+
                     text-xl
                     font-bold
-                    text-[#111827]
+
+                    text-[var(--foreground)]
                     "
                 >
                     Wrote the opening scene today.
                 </h2>
 
-                <p
+                <div
                     className="
-                    mt-2
+                    mt-3
+
+                    flex
+                    items-center
+                    gap-2
+
                     text-sm
-                    text-[#6B7280]
+
+                    text-[var(--foreground-secondary)]
                     "
                 >
-                    May 20, 2025
-                </p>
+                    <CalendarDays
+                        size={16}
+                    />
+
+                    <span>
+                        May 20, 2025
+                    </span>
+                </div>
             </div>
-        </div>
+        </Card>
     );
 }

@@ -1,5 +1,13 @@
 import SettingsHeader from "@/components/profile/SettingsHeader";
 
+import Card from "@/components/ui/Card";
+import Button from "@/components/ui/Button";
+
+import FormSection from "@/components/ui/forms/FormSection";
+import FormField from "@/components/ui/forms/FormField";
+import TextInput from "@/components/ui/forms/TextInput";
+import TextArea from "@/components/ui/forms/TextArea";
+
 export default function EditLeadGoalPage() {
     return (
         <div className="space-y-6">
@@ -7,84 +15,31 @@ export default function EditLeadGoalPage() {
                 title="Edit Lead Goal"
             />
 
-            <div
-                className="
-                rounded-3xl
-                border
-                border-[#E8E1D7]
-                p-5
-                space-y-5
-                "
-            >
-                <div>
-                    <label
-                        className="
-                        block
-                        mb-2
-                        text-sm
-                        font-medium
-                        "
+            <Card className="p-5">
+                <FormSection>
+                    <FormField label="Lead Goal">
+                        <TextInput
+                            defaultValue="Write Every Day"
+                            placeholder="Lead Goal"
+                        />
+                    </FormField>
+
+                    <FormField label="Why This Matters">
+                        <TextArea
+                            rows={4}
+                            defaultValue="Writing consistently helps me become the writer I want to be."
+                            placeholder="Why does this goal matter to you?"
+                        />
+                    </FormField>
+
+                    <Button
+                        variant="primary"
+                        type="submit"
                     >
-                        Lead Goal
-                    </label>
-
-                    <input
-                        defaultValue="Write Every Day"
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        "
-                    />
-                </div>
-
-                <div>
-                    <label
-                        className="
-                        block
-                        mb-2
-                        text-sm
-                        font-medium
-                        "
-                    >
-                        Why This Matters
-                    </label>
-
-                    <textarea
-                        rows={4}
-                        defaultValue="Writing consistently helps me become the writer I want to be."
-                        className="
-                        w-full
-                        rounded-2xl
-                        border
-                        border-[#E8E1D7]
-                        bg-[#F7F3EC]
-                        px-4
-                        py-3
-                        text-sm
-                        resize-none
-                        "
-                    />
-                </div>
-
-                <button
-                    className="
-                    w-full
-                    rounded-2xl
-                    bg-[#0E5A64]
-                    py-3
-                    text-white
-                    font-medium
-                    "
-                >
-                    Save Changes
-                </button>
-            </div>
+                        Save Changes
+                    </Button>
+                </FormSection>
+            </Card>
         </div>
     );
 }

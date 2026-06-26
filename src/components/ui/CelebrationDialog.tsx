@@ -53,9 +53,7 @@ export default function CelebrationDialog({
 
     return createPortal(
         <>
-            <NatureCelebration
-                show={open}
-            />
+            <NatureCelebration show={open} />
 
             <AnimatePresence>
                 {open && (
@@ -107,11 +105,19 @@ export default function CelebrationDialog({
                             w-full
                             max-w-[320px]
                             rounded-3xl
-                            bg-[#F7F3EC]
+                            border
+                            shadow-2xl
                             px-6
                             py-7
-                            shadow-2xl
+                            transition-colors
+                            duration-300
                             "
+                            style={{
+                                background:
+                                    "var(--surface)",
+                                borderColor:
+                                    "var(--border)",
+                            }}
                         >
                             {icon && (
                                 <motion.div
@@ -137,9 +143,13 @@ export default function CelebrationDialog({
                                     items-center
                                     justify-center
                                     rounded-2xl
-                                    bg-[#EEF5F0]
-                                    text-[#2F7A59]
                                     "
+                                    style={{
+                                        background:
+                                            "var(--surface-secondary)",
+                                        color:
+                                            "var(--success)",
+                                    }}
                                 >
                                     {icon}
                                 </motion.div>
@@ -160,8 +170,11 @@ export default function CelebrationDialog({
                                 className="
                                 text-xl
                                 font-semibold
-                                text-[#111827]
                                 "
+                                style={{
+                                    color:
+                                        "var(--foreground)",
+                                }}
                             >
                                 {title}
                             </motion.h2>
@@ -182,8 +195,11 @@ export default function CelebrationDialog({
                                 mt-3
                                 text-sm
                                 leading-6
-                                text-[#6B7280]
                                 "
+                                style={{
+                                    color:
+                                        "var(--foreground-secondary)",
+                                }}
                             >
                                 {description}
                             </motion.p>
@@ -214,19 +230,22 @@ export default function CelebrationDialog({
                                     flex-1
                                     rounded-2xl
                                     border
-                                    border-[#D9D2C7]
-                                    bg-white
                                     py-3
                                     text-sm
                                     font-medium
                                     transition-all
-                                    hover:bg-[#F8F5EF]
                                     hover:scale-[1.01]
                                     "
+                                    style={{
+                                        borderColor:
+                                            "var(--border)",
+                                        background:
+                                            "var(--surface)",
+                                        color:
+                                            "var(--foreground)",
+                                    }}
                                 >
-                                    {
-                                        secondaryText
-                                    }
+                                    {secondaryText}
                                 </button>
 
                                 <button
@@ -236,15 +255,17 @@ export default function CelebrationDialog({
                                     className="
                                     flex-1
                                     rounded-2xl
-                                    bg-[#0E5A64]
                                     py-3
                                     text-sm
                                     font-medium
                                     text-white
                                     transition-all
-                                    hover:bg-[#0B4A52]
                                     hover:scale-[1.03]
                                     "
+                                    style={{
+                                        background:
+                                            "var(--primary)",
+                                    }}
                                 >
                                     {primaryText}
                                 </button>

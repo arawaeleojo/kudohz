@@ -75,14 +75,17 @@ export default function KudoMenu() {
                 px-4
                 py-3
                 text-sm
-                text-[#374151]
-                hover:bg-[#F8F5EF]
                 transition-colors
+                duration-200
+                hover:bg-[var(--surface-secondary)]
                 "
+                style={{
+                    color: "var(--foreground)",
+                }}
             >
                 {icon}
 
-                {label}
+                <span>{label}</span>
             </button>
         );
     }
@@ -97,8 +100,24 @@ export default function KudoMenu() {
                     onClick={() =>
                         setOpen(!open)
                     }
+                    className="
+                    flex
+                    items-center
+                    justify-center
+                    rounded-full
+                    w-10
+                    h-10
+                    transition-colors
+                    hover:bg-[var(--surface-secondary)]
+                    "
                 >
-                    <MoreVertical size={20} />
+                    <MoreVertical
+                        size={20}
+                        style={{
+                            color:
+                                "var(--foreground)",
+                        }}
+                    />
                 </button>
 
                 {open && (
@@ -110,16 +129,24 @@ export default function KudoMenu() {
                         w-56
                         rounded-2xl
                         border
-                        border-[#E5DDD2]
-                        bg-white
                         shadow-lg
                         overflow-hidden
                         z-50
+                        transition-colors
+                        duration-300
                         "
+                        style={{
+                            background:
+                                "var(--surface)",
+                            borderColor:
+                                "var(--border)",
+                        }}
                     >
                         <MenuItem
                             icon={
-                                <Search size={18} />
+                                <Search
+                                    size={18}
+                                />
                             }
                             label="Search"
                             onClick={() =>
@@ -131,7 +158,9 @@ export default function KudoMenu() {
 
                         <MenuItem
                             icon={
-                                <Trash2 size={18} />
+                                <Trash2
+                                    size={18}
+                                />
                             }
                             label="Clear Chat"
                             onClick={() =>
@@ -143,7 +172,9 @@ export default function KudoMenu() {
 
                         <MenuItem
                             icon={
-                                <Download size={18} />
+                                <Download
+                                    size={18}
+                                />
                             }
                             label="Export Chat"
                             onClick={() =>
@@ -155,7 +186,9 @@ export default function KudoMenu() {
 
                         <MenuItem
                             icon={
-                                <Info size={18} />
+                                <Info
+                                    size={18}
+                                />
                             }
                             label="About Kudo"
                             onClick={() =>
@@ -189,16 +222,22 @@ export default function KudoMenu() {
 
             <ActionConfirmationDialog
                 open={showExportDialog}
-                icon={<Download size={28} />}
+                icon={
+                    <Download size={28} />
+                }
                 title="Coming Soon"
                 description="Export Chat will be available in a future update."
                 confirmText="OK"
                 showCancel={false}
                 onConfirm={() =>
-                    setShowExportDialog(false)
+                    setShowExportDialog(
+                        false
+                    )
                 }
                 onCancel={() =>
-                    setShowExportDialog(false)
+                    setShowExportDialog(
+                        false
+                    )
                 }
             />
         </>

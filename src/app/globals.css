@@ -1,13 +1,115 @@
 @import "tailwindcss";
 
+/* =======================================================
+   LIGHT THEME
+======================================================= */
+
 :root {
+  /* Backgrounds */
   --background: #F7F3EC;
+  --surface: #FFFFFF;
+  --surface-secondary: #EEF5F0;
+
+  /* Text */
   --foreground: #111827;
+  --foreground-secondary: #6B7280;
+  --foreground-muted: #9CA3AF;
+
+  /* Brand */
+  --primary: #0E5A64;
+  --primary-hover: #0B4A52;
+
+  /* Semantic */
+  --success: #2F7A59;
+  --warning: #F59E0B;
+  --error: #DC2626;
+  --danger: #DC2626;
+
+  /* UI */
+  --border: #E5DDD2;
+  --progress-track: #DAD3C7;
+  --overlay: rgba(0, 0, 0, .45);
+}
+
+/* =======================================================
+   DARK THEME
+======================================================= */
+
+.dark {
+  /* Backgrounds */
+  --background: #081014;
+  --surface: #0F181C;
+  --surface-secondary: #131E22;
+
+  /* Text */
+  --foreground: #F3F5F2;
+  --foreground-secondary: #A8B5AE;
+  --foreground-muted: #6D7A74;
+
+  /* Brand */
+  --primary: #6FAE79;
+  --primary-hover: #82C58D;
+
+  /* Semantic */
+  --success: #79C58C;
+  --warning: #D5B562;
+  --error: #E27C7C;
+  --danger: #EF4444;
+
+  /* UI */
+  --border: #1F2C30;
+  --progress-track: #2C3538;
+  --overlay: rgba(0, 0, 0, .72);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-border: var(--border);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --color-progress-track: var(--progress-track);
+}
+
+/* =======================================================
+   GLOBALS
+======================================================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
 body {
-  background: var(--foreground);
+  background: var(--background);
   color: var(--foreground);
   font-family: "Manrope", sans-serif;
-  min-height: 100vh;
+  transition:
+    background-color .3s ease,
+    color .3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

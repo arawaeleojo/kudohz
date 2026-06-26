@@ -1,7 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ChevronRight } from "lucide-react";
+import { Leaf } from "lucide-react";
+
+import CardSection from "@/components/ui/CardSection";
 
 export default function JourneyLagGoals() {
     const router = useRouter();
@@ -12,58 +14,39 @@ export default function JourneyLagGoals() {
     ];
 
     return (
-        <div
-            className="
-            rounded-3xl
-            border
-            border-[#E8E1D7]
-            p-5
-            "
+        <CardSection
+            title={`Lag Goals (${lagGoals.length})`}
+            actionText="View"
+            onAction={() =>
+                router.push("/journeys/lag-goals")
+            }
         >
-            <button
-                onClick={() =>
-                    router.push(
-                        "/journeys/lag-goals"
-                    )
-                }
-                className="
-                w-full
-                flex
-                items-center
-                justify-between
-                mb-4
-                text-left
-                "
-            >
-                <h2
-                    className="
-                    text-base
-                    font-semibold
-                    text-[#111827]
-                    "
-                >
-                    Lag Goals (2)
-                </h2>
-
-                <ChevronRight
-                    size={18}
-                    color="#6B7280"
-                />
-            </button>
-
             <div className="space-y-3">
                 {lagGoals.map((goal) => (
                     <div
                         key={goal}
                         className="
-                        text-sm
-                        text-[#374151]
+                        flex
+                        items-center
+                        gap-3
                         "
                     >
-                        • {goal}
+                        <Leaf
+                            size={15}
+                            className="text-[var(--primary)]"
+                        />
+
+                        <span
+                            className="
+                            text-sm
+                            text-[var(--foreground)]
+                            "
+                        >
+                            {goal}
+                        </span>
                     </div>
                 ))}
             </div>
-        </div>
+        </CardSection>
     );
 }
