@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Sparkles } from "lucide-react";
+import {
+    Sparkles,
+    Leaf,
+} from "lucide-react";
 
 import ActionItem from "./ActionItem";
 import CelebrationDialog from "@/components/ui/CelebrationDialog";
@@ -51,11 +54,15 @@ export default function TodayActionsSection() {
     const [todaysFocus, setTodaysFocus] =
         useState(initialFocus);
 
-    const [completedIdentity, setCompletedIdentity] =
-        useState("");
+    const [
+        completedIdentity,
+        setCompletedIdentity,
+    ] = useState("");
 
-    const [showCelebration, setShowCelebration] =
-        useState(false);
+    const [
+        showCelebration,
+        setShowCelebration,
+    ] = useState(false);
 
     function toggleAction(
         identityName: string,
@@ -101,7 +108,8 @@ export default function TodayActionsSection() {
 
                 return {
                     ...identity,
-                    actions: updatedActions,
+                    actions:
+                        updatedActions,
                 };
             });
         });
@@ -167,16 +175,12 @@ export default function TodayActionsSection() {
                                     mb-3
                                     "
                                 >
-                                    <div
-                                        className="
-                                        h-2
-                                        w-2
-                                        rounded-full
-                                        "
-                                        style={{
-                                            background:
-                                                "var(--primary)",
-                                        }}
+                                    <Leaf
+                                        size={16}
+                                        strokeWidth={
+                                            2.5
+                                        }
+                                        className="text-[var(--primary)]"
                                     />
 
                                     <h3
@@ -185,11 +189,8 @@ export default function TodayActionsSection() {
                                         font-semibold
                                         tracking-wide
                                         uppercase
+                                        text-[var(--primary)]
                                         "
-                                        style={{
-                                            color:
-                                                "var(--primary)",
-                                        }}
                                     >
                                         {
                                             identity.identity
@@ -197,11 +198,7 @@ export default function TodayActionsSection() {
                                     </h3>
                                 </div>
 
-                                <div
-                                    className="
-                                    space-y-2
-                                    "
-                                >
+                                <div className="space-y-2">
                                     {identity.actions.map(
                                         (
                                             action

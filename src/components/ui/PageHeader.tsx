@@ -23,7 +23,13 @@ export default function PageHeader({
         switch (title.toLowerCase()) {
             case "profile":
                 return (
-                    <IconButton>
+                    <IconButton
+                        onClick={() =>
+                            router.push(
+                                "/notifications"
+                            )
+                        }
+                    >
                         <Bell
                             size={22}
                             className="text-[var(--foreground)]"

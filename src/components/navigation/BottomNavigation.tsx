@@ -56,7 +56,7 @@ export default function BottomNavigation() {
                 bg-[var(--surface)]
 
                 border-t
-                // border-[var(--border)]
+                border-[var(--border)]
 
                 flex
                 items-center
