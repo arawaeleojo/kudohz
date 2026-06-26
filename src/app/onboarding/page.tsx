@@ -28,17 +28,17 @@ const onboardingSteps = [
 ];
 
 const CONTAINER = 320;
-const INNER     = 240;
-const ORBIT_R   = 128;
+const INNER     = 270;
+const ORBIT_R   = 138;
 const ICON_SIZE = 46;
 
 const orbitIcons = [
-  { Icon: BookOpen, label: "learning",  angleDeg: -90  },
-  { Icon: Dumbbell, label: "fitness",   angleDeg: -150 },
-  { Icon: User,     label: "identity",  angleDeg: 150  },
-  { Icon: Heart,    label: "wellbeing", angleDeg: 90   },
-  { Icon: PenLine,  label: "tracking",  angleDeg: -30  },
-];
+  { Icon: BookOpen, label: "learning" },
+  { Icon: Dumbbell, label: "fitness" },
+  { Icon: User,     label: "identity"},
+  { Icon: Heart,    label: "wellbeing" },
+  { Icon: PenLine,  label: "tracking" },
+].map((icon, i) => ({ ...icon, angleDeg: -90 + i * 72 }));;
 
 function OrbitIllustration({ src, alt }: { src: string; alt: string }) {
   const cx = CONTAINER / 2;
@@ -74,7 +74,7 @@ function OrbitIllustration({ src, alt }: { src: string; alt: string }) {
           top: cy - INNER / 2,
         }}
       >
-        <Image src={src} alt={alt} fill className="object-cover" priority />
+        <Image src={src} alt={alt} fill className="object-cover scale-110" priority />
       </div>
 
       {orbitIcons.map(({ Icon, label, angleDeg }) => {
